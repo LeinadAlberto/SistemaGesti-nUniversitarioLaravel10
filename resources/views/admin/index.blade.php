@@ -69,6 +69,27 @@
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div><!-- /.col-md-3 -->
+
+        <!-- Turnos -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/reloj.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Turnos Registrados</span>
+                    <span class="info-box-number">
+                        {{  $total_turnos }} 
+                        @if($total_turnos == 1)
+                            Turno
+                        @else
+                            Turnos
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
     </div><!-- /.row -->
 @stop
 

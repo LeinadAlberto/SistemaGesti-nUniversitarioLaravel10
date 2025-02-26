@@ -357,6 +357,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Turnos',
+            'url' => 'admin/turnos',
+            'icon' => 'fas fa-fw fa-clock',
+            'classes' => 'bg-info text-white',
+        ],
+
 
         /* ['header' => 'labels'], */
         /* [
