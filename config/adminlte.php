@@ -364,6 +364,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Paralelos',
+            'url' => 'admin/paralelos',
+            'icon' => 'fas fa-fw fa-clone',
+            'classes' => 'bg-info text-white',
+        ],
+
 
         /* ['header' => 'labels'], */
         /* [

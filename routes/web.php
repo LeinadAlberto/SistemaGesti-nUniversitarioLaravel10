@@ -110,3 +110,25 @@ Route::put('/admin/turnos/{id}', [App\Http\Controllers\TurnoController::class, '
 
 Route::delete('/admin/turnos/{id}', [App\Http\Controllers\TurnoController::class, 'destroy'])
 ->name('admin.turno.destroy')->middleware('auth'); 
+
+// Rutas para Paralelos
+Route::get('/admin/paralelos', [App\Http\Controllers\ParaleloController::class, 'index'])
+->name('admin.paralelo.index')->middleware('auth');
+
+Route::get('/admin/paralelos/create', [App\Http\Controllers\ParaleloController::class, 'create'])
+->name('admin.paralelo.create')->middleware('auth');
+
+Route::post('/admin/paralelos/create', [App\Http\Controllers\ParaleloController::class, 'store'])
+->name('admin.paralelo.store')->middleware('auth');
+
+Route::get('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::class, 'show'])
+->name('admin.paralelo.show')->middleware('auth');
+
+Route::get('/admin/paralelos/{id}/edit', [App\Http\Controllers\ParaleloController::class, 'edit'])
+->name('admin.paralelo.edit')->middleware('auth');
+
+Route::put('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::class, 'update'])
+->name('admin.paralelo.update')->middleware('auth');
+
+Route::delete('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::class, 'destroy'])
+->name('admin.paralelo.destroy')->middleware('auth'); 

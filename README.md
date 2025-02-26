@@ -7,6 +7,7 @@
 - Carreras
 - Niveles
 - Turnos
+- Paralelos
 - En desarrollo... 
 
 ![preview img](/preview.png)
