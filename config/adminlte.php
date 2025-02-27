@@ -371,6 +371,12 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Periodos',
+            'url' => 'admin/periodos',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+            'classes' => 'bg-info text-white',
+        ],
 
         /* ['header' => 'labels'], */
         /* [

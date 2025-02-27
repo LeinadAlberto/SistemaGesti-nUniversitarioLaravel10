@@ -33,9 +33,6 @@ Route::get('/admin/gestiones/create', [App\Http\Controllers\GestionController::c
 Route::post('/admin/gestiones/create', [App\Http\Controllers\GestionController::class, 'store'])
 ->name('admin.gestion.store')->middleware('auth');
 
-Route::get('/admin/gestiones/{id}', [App\Http\Controllers\GestionController::class, 'show'])
-->name('admin.gestion.show')->middleware('auth');
-
 Route::get('/admin/gestiones/{id}/edit', [App\Http\Controllers\GestionController::class, 'edit'])
 ->name('admin.gestion.edit')->middleware('auth');
 
@@ -54,9 +51,6 @@ Route::get('/admin/carreras/create', [App\Http\Controllers\CarreraController::cl
 
 Route::post('/admin/carreras/create', [App\Http\Controllers\CarreraController::class, 'store'])
 ->name('admin.carrera.store')->middleware('auth');
-
-Route::get('/admin/carreras/{id}', [App\Http\Controllers\CarreraController::class, 'show'])
-->name('admin.carrera.show')->middleware('auth');
 
 Route::get('/admin/carreras/{id}/edit', [App\Http\Controllers\CarreraController::class, 'edit'])
 ->name('admin.carrera.edit')->middleware('auth');
@@ -77,9 +71,6 @@ Route::get('/admin/niveles/create', [App\Http\Controllers\NivelController::class
 Route::post('/admin/niveles/create', [App\Http\Controllers\NivelController::class, 'store'])
 ->name('admin.nivel.store')->middleware('auth');
 
-Route::get('/admin/niveles/{id}', [App\Http\Controllers\NivelController::class, 'show'])
-->name('admin.nivel.show')->middleware('auth');
-
 Route::get('/admin/niveles/{id}/edit', [App\Http\Controllers\NivelController::class, 'edit'])
 ->name('admin.nivel.edit')->middleware('auth');
 
@@ -98,9 +89,6 @@ Route::get('/admin/turnos/create', [App\Http\Controllers\TurnoController::class,
 
 Route::post('/admin/turnos/create', [App\Http\Controllers\TurnoController::class, 'store'])
 ->name('admin.turno.store')->middleware('auth');
-
-Route::get('/admin/turnos/{id}', [App\Http\Controllers\TurnoController::class, 'show'])
-->name('admin.turno.show')->middleware('auth');
 
 Route::get('/admin/turnos/{id}/edit', [App\Http\Controllers\TurnoController::class, 'edit'])
 ->name('admin.turno.edit')->middleware('auth');
@@ -121,9 +109,6 @@ Route::get('/admin/paralelos/create', [App\Http\Controllers\ParaleloController::
 Route::post('/admin/paralelos/create', [App\Http\Controllers\ParaleloController::class, 'store'])
 ->name('admin.paralelo.store')->middleware('auth');
 
-Route::get('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::class, 'show'])
-->name('admin.paralelo.show')->middleware('auth');
-
 Route::get('/admin/paralelos/{id}/edit', [App\Http\Controllers\ParaleloController::class, 'edit'])
 ->name('admin.paralelo.edit')->middleware('auth');
 
@@ -132,3 +117,22 @@ Route::put('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::cl
 
 Route::delete('/admin/paralelos/{id}', [App\Http\Controllers\ParaleloController::class, 'destroy'])
 ->name('admin.paralelo.destroy')->middleware('auth'); 
+
+// Rutas para Periodos
+Route::get('/admin/periodos', [App\Http\Controllers\PeriodoController::class, 'index'])
+->name('admin.periodo.index')->middleware('auth');
+
+Route::get('/admin/periodos/create', [App\Http\Controllers\PeriodoController::class, 'create'])
+->name('admin.periodo.create')->middleware('auth');
+
+Route::post('/admin/periodos/create', [App\Http\Controllers\PeriodoController::class, 'store'])
+->name('admin.periodo.store')->middleware('auth');
+
+Route::get('/admin/periodos/{id}/edit', [App\Http\Controllers\PeriodoController::class, 'edit'])
+->name('admin.periodo.edit')->middleware('auth');
+
+Route::put('/admin/periodos/{id}', [App\Http\Controllers\PeriodoController::class, 'update'])
+->name('admin.periodo.update')->middleware('auth');
+
+Route::delete('/admin/periodos/{id}', [App\Http\Controllers\PeriodoController::class, 'destroy'])
+->name('admin.periodo.destroy')->middleware('auth'); 
