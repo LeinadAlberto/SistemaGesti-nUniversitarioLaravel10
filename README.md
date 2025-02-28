@@ -8,6 +8,8 @@
 - Niveles
 - Turnos
 - Paralelos
+- Periodos
+- Materias
 - En desarrollo... 
 
 ![preview img](/preview.png)

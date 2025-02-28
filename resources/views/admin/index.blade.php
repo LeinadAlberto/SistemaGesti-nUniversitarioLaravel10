@@ -132,6 +132,27 @@
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div><!-- /.col-md-3 -->
+
+        <!-- Materias -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/libros.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Materias Registradas</span>
+                    <span class="info-box-number">
+                        {{  $total_materias }} 
+                        @if($total_materias == 1)
+                            Materia
+                        @else
+                            Materias
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
     </div><!-- /.row -->
 @stop
 

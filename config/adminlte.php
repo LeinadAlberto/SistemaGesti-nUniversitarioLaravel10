@@ -378,6 +378,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Materias',
+            'url' => 'admin/materias',
+            'icon' => 'fas fa-fw fa-book',
+            'classes' => 'bg-info text-white',
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',

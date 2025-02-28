@@ -14,4 +14,10 @@ class Carrera extends Model
     protected $fillable = [
         "nombre",
     ];
+
+    // Relación con el modelo Materia
+    public function materias(): HasMany
+    {
+        return $this->hasMany(Materia::class, 'carrera_id');
+    }
 }
