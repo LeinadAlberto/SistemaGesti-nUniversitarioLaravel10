@@ -385,6 +385,21 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Roles',
+            'icon' => 'fas fa-fw fa-user-check',
+            'classes' => 'bg-info text-white',
+            'submenu' => [
+                [
+                    'text' => 'Listado de Roles',
+                    'url' => 'admin/roles',
+                    'classes' => 'bg-info text-white',
+
+                ],
+            ],
+            
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',
