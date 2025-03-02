@@ -400,6 +400,13 @@ return [
             
         ],
 
+        [
+            'text' => 'Administrativos',
+            'url' => 'admin/administrativos',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'classes' => 'bg-info text-white',
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',

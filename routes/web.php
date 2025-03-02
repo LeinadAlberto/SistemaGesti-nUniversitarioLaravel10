@@ -174,3 +174,25 @@ Route::put('/admin/roles/{id}', [App\Http\Controllers\RoleController::class, 'up
 
 Route::delete('/admin/roles/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])
 ->name('admin.role.destroy')->middleware('auth'); 
+
+// Rutas para Administrativos
+Route::get('/admin/administrativos', [App\Http\Controllers\AdministrativoController::class, 'index'])
+->name('admin.administrativo.index')->middleware('auth');
+
+Route::get('/admin/administrativos/create', [App\Http\Controllers\AdministrativoController::class, 'create'])
+->name('admin.administrativo.create')->middleware('auth');
+
+Route::post('/admin/administrativos/create', [App\Http\Controllers\AdministrativoController::class, 'store'])
+->name('admin.administrativo.store')->middleware('auth');
+
+Route::get('/admin/administrativos/{id}', [App\Http\Controllers\AdministrativoController::class, 'show'])
+->name('admin.administrativo.show')->middleware('auth');
+
+Route::get('/admin/administrativos/{id}/edit', [App\Http\Controllers\AdministrativoController::class, 'edit'])
+->name('admin.administrativo.edit')->middleware('auth');
+
+Route::put('/admin/administrativos/{id}', [App\Http\Controllers\AdministrativoController::class, 'update'])
+->name('admin.administrativo.update')->middleware('auth');
+
+Route::delete('/admin/administrativos/{id}', [App\Http\Controllers\AdministrativoController::class, 'destroy'])
+->name('admin.administrativo.destroy')->middleware('auth'); 
