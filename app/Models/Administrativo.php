@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Administrativo extends Model
 {
     use HasFactory;
+
+    protected $table = "administrativos";
+
+    protected $fillable = [
+        'usuario_id',
+        'nombres',
+        'apellidos',
+        'ci',
+        'fecha_nacimiento',
+        'telefono',
+        'profesion',
+        'direccion'
+    ];
+
+    public function usuario() 
+    {
+        return $this->belongsTo(User::class);
+    }
 }
