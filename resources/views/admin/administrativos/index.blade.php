@@ -8,7 +8,7 @@
 
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             <div class="card card-outline card-info">
 
@@ -26,7 +26,11 @@
                         <thead>
                             <tr class="text-center text-white" style="background-color: #212529">
                                 <th>Nro</th>
-                                                            
+                                <th>Rol</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Cédula</th>
+                                <th>Correo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -37,9 +41,20 @@
                             @foreach ($administrativos as $administrativo)
                                 <tr>
                                     <td class="text-center align-middle">{{ $contador++ }}</td>
-                                    
+
+                                    <td>{{ $administrativo->usuario->roles->pluck('name')->implode(', ') }}</td>
+                                    <td>{{ $administrativo->nombres }}</td>
+                                    <td>{{ $administrativo->apellidos }}</td>
+                                    <td>{{ $administrativo->ci }}</td>
+                                    <td>{{ $administrativo->usuario->email }}</td>
+                                   
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group">
+                                            <a href="{{ url('/admin/administrativos/' . $administrativo->id) }}" 
+                                                class="btn btn-sm btn-info" 
+                                                style="border-radius: 0px 0px 0px 0px">
+                                                <i class="fas fa-eye" title="Ver"></i>
+                                            </a>
                                             <a href="{{ url('/admin/administrativos/' . $administrativo->id . '/edit') }}" 
                                                 class="btn btn-sm btn-success" 
                                                 style="border-radius: 0px 0px 0px 0px">

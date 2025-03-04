@@ -24,11 +24,49 @@
 
                         <div class="row">
 
-                            <!-- Nombre del Rol-->
+                            <!-- Nombres de Administrativo-->
                             <div class="col-md-3">
 
                                 <div class="form-group">
-                                    <label for="">Nombre del Rol <span class="text-danger">*</span></label>
+                                    <label for="">Nombre(s) <span class="text-danger">*</span></label>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div><!-- /.input-group-prepend -->
+                                        <input type="text" class="form-control" name="nombres" value="{{ old('nombres') }}" placeholder="Ingrese nombre(s)..." required>
+                                    </div><!-- /.input-group -->
+                                    @error('nombres')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div><!-- /.form-group -->
+
+                            </div><!-- /.col-md-3 -->
+
+                            <!-- Apellidos de Administrativo-->
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="">Apellido(s) <span class="text-danger">*</span></label>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                                        </div><!-- /.input-group-prepend -->
+                                        <input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" placeholder="Ingrese apellido(s)..." required>
+                                    </div><!-- /.input-group -->
+                                    @error('apellidos')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div><!-- /.form-group -->
+
+                            </div><!-- /.col-md-3 -->
+
+                            <!-- Rol-->
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="">Rol <span class="text-danger">*</span></label>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -42,44 +80,6 @@
                                         </select>
                                     </div><!-- /.input-group -->
                                     @error('rol')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div><!-- /.form-group -->
-
-                            </div><!-- /.col-md-3 -->
-
-                            <!-- Nombres de Administrativo-->
-                            <div class="col-md-3">
-
-                                <div class="form-group">
-                                    <label for="">Nombres <span class="text-danger">*</span></label>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        </div><!-- /.input-group-prepend -->
-                                        <input type="text" class="form-control" name="nombres" value="{{ old('nombres') }}" placeholder="Ingrese nombres..." required>
-                                    </div><!-- /.input-group -->
-                                    @error('nombres')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div><!-- /.form-group -->
-
-                            </div><!-- /.col-md-3 -->
-
-                            <!-- Apellidos de Administrativo-->
-                            <div class="col-md-3">
-
-                                <div class="form-group">
-                                    <label for="">Apellidos <span class="text-danger">*</span></label>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
-                                        </div><!-- /.input-group-prepend -->
-                                        <input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" placeholder="Ingrese apellidos..." required>
-                                    </div><!-- /.input-group -->
-                                    @error('apellidos')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div><!-- /.form-group -->
@@ -104,6 +104,48 @@
                                 </div><!-- /.form-group -->
 
                             </div><!-- /.col-md-3 -->
+
+                        </div><!-- /.row -->
+
+                        <div class="row">
+
+                            <!-- Dirección -->
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="direccion">Dirección <span class="text-danger">*</span></label>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        </div><!-- /.input-group-prepend -->
+                                        <input type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" placeholder="Ingrese dirección..." required>
+                                    </div><!-- /.input-group -->
+                                    @error('direccion')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div><!-- /.form-group -->
+
+                            </div><!-- /.col-md-6 -->
+
+                            <!-- Correo Electrónico -->
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico <span class="text-danger">*</span></label>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        </div><!-- /.input-group-prepend -->
+                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ingrese correo electrónico..." required>
+                                    </div><!-- /.input-group -->
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div><!-- /.form-group -->
+
+                            </div><!-- /.col-md-6 -->
 
                         </div><!-- /.row -->
 
@@ -147,25 +189,6 @@
 
                             </div><!-- /.col-md-3 -->
 
-                            <!-- Correo Electrónico -->
-                            <div class="col-md-3">
-
-                                <div class="form-group">
-                                    <label for="email">Correo Electrónico <span class="text-danger">*</span></label>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                        </div><!-- /.input-group-prepend -->
-                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ingrese correo electrónico..." required>
-                                    </div><!-- /.input-group -->
-                                    @error('email')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div><!-- /.form-group -->
-
-                            </div><!-- /.col-md-6 -->
-
                             <!-- Profesión -->
                             <div class="col-md-3">
 
@@ -186,30 +209,7 @@
                             </div><!-- /.col-md-3 -->
 
                         </div><!-- /.row -->
-
-                        <div class="row">
-
-                            <!-- Dirección -->
-                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label for="direccion">Dirección <span class="text-danger">*</span></label>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                                        </div><!-- /.input-group-prepend -->
-                                        <input type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" placeholder="Ingrese dirección..." required>
-                                    </div><!-- /.input-group -->
-                                    @error('direccion')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div><!-- /.form-group -->
-
-                            </div><!-- /.col-md-6 -->
-
-                        </div><!-- /.row -->
-                        
+ 
                         <hr class="mb-4">
 
                         <div class="row">
