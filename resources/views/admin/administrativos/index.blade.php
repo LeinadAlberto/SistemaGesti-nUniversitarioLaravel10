@@ -47,19 +47,23 @@
                                     <td>{{ $administrativo->apellidos }}</td>
                                     <td>{{ $administrativo->ci }}</td>
                                     <td>{{ $administrativo->usuario->email }}</td>
-                                   
+                                    
+                                    <!-- Botones Ver, Editar y Elimninar -->
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group">
+                                            
                                             <a href="{{ url('/admin/administrativos/' . $administrativo->id) }}" 
                                                 class="btn btn-sm btn-info" 
                                                 style="border-radius: 0px 0px 0px 0px">
                                                 <i class="fas fa-eye" title="Ver"></i>
                                             </a>
+
                                             <a href="{{ url('/admin/administrativos/' . $administrativo->id . '/edit') }}" 
                                                 class="btn btn-sm btn-success" 
                                                 style="border-radius: 0px 0px 0px 0px">
                                                 <i class="fas fa-pencil-alt" title="Editar"></i>
                                             </a>
+
                                             <form action="{{ url('/admin/administrativos',$administrativo->id) }}" method="post"
                                                 onclick="preguntar{{$administrativo->id}}(event)" id="miFormulario{{$administrativo->id}}">
                                                 @csrf
@@ -88,6 +92,7 @@
                                                     }); 
                                                 }
                                             </script>
+
                                         </div><!-- /.btn-group -->
                                     </td>
                                 </tr>
