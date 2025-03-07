@@ -9,7 +9,7 @@
     <div class="row">
         <!-- Gestiones -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/calendario.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -148,6 +148,48 @@
                             Materia
                         @else
                             Materias
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
+
+        <!-- Roles -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/roles.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Roles Registrados</span>
+                    <span class="info-box-number">
+                        {{  $total_roles }} 
+                        @if($total_roles == 1)
+                            Rol
+                        @else
+                            Roles
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
+
+        <!-- Administrativos -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/administrativos.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Administrativos</span>
+                    <span class="info-box-number">
+                        {{  $total_administrativos }} 
+                        @if($total_administrativos == 1)
+                            Administrativo
+                        @else
+                            Administrativos
                         @endif
                     </span>
                 </div><!-- /.info-box-content -->

@@ -5,6 +5,21 @@
 
 @section('adminlte_css')
     @stack('css')
+    <style type='text/css'>
+        .zoomP{
+            transition: width 1.1s, height 1.1s, transform 1.1s;
+            -moz-transition: width 1.1s, height 1.1s, -moz-transform 1.1s;
+            -webkit-transition: width 1.1s, height 1.1s, -webkit-transform 1.1s;
+            -o-transition: width 1.1s, height 1.1s, -o-transform 1.1s;
+            border: 1px solid #C0C0C0;
+            box-shadow: #C0C0C0 0px 5px 5px 0px; 
+        }
+
+        .zoomP:hover {
+            transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+        }
+    </style>
     @yield('css')
 @stop
 
