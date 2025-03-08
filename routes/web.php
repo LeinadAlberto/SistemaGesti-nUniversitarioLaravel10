@@ -196,3 +196,25 @@ Route::put('/admin/administrativos/{id}', [App\Http\Controllers\AdministrativoCo
 
 Route::delete('/admin/administrativos/{id}', [App\Http\Controllers\AdministrativoController::class, 'destroy'])
 ->name('admin.administrativo.destroy')->middleware('auth'); 
+
+// Rutas para Docentes
+Route::get('/admin/docentes', [App\Http\Controllers\DocenteController::class, 'index'])
+->name('admin.docente.index')->middleware('auth');
+
+Route::get('/admin/docentes/create', [App\Http\Controllers\DocenteController::class, 'create'])
+->name('admin.docente.create')->middleware('auth');
+
+Route::post('/admin/docentes/create', [App\Http\Controllers\DocenteController::class, 'store'])
+->name('admin.docente.store')->middleware('auth');
+
+Route::get('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::class, 'show'])
+->name('admin.docente.show')->middleware('auth');
+
+Route::get('/admin/docentes/{id}/edit', [App\Http\Controllers\DocenteController::class, 'edit'])
+->name('admin.docente.edit')->middleware('auth');
+
+Route::put('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::class, 'update'])
+->name('admin.docente.update')->middleware('auth');
+
+Route::delete('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::class, 'destroy'])
+->name('admin.docente.destroy')->middleware('auth'); 

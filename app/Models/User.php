@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Administrativo::class);
     }
+
+    public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    }
 }

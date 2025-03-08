@@ -30,7 +30,7 @@
 
         <!-- Carreras -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/diploma.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -51,7 +51,7 @@
 
         <!-- Niveles -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/grafico-de-linea.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -72,7 +72,7 @@
 
         <!-- Turnos -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/reloj.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -93,7 +93,7 @@
 
         <!-- Paralelos -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/diagrama-de-flujo.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -114,7 +114,7 @@
 
         <!-- Periodos -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/hexagonal.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -135,7 +135,7 @@
 
         <!-- Materias -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/libros.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -156,7 +156,7 @@
 
         <!-- Roles -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/roles.gif") }}" width="100%" alt="imagen">
                 </span>
@@ -177,7 +177,7 @@
 
         <!-- Administrativos -->
         <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
+            <div class="info-box zoomP">
                 <span class="info-box-icon bg-info">
                     <img src="{{ url("/img/administrativos.gif") }}" width="100%" alt="imagen">
                 </span>

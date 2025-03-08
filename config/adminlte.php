@@ -407,6 +407,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Docentes',
+            'url' => 'admin/docentes',
+            'icon' => 'fas fa-fw fa-chalkboard-teacher',
+            'classes' => 'bg-info text-white',
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',
