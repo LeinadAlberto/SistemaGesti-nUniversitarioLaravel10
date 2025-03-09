@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DocenteController extends Controller
 {
@@ -16,43 +19,80 @@ class DocenteController extends Controller
 
     public function create()
     {
-        $docentes = Docente::all();
+        $roles = Role::all();
 
-        return view('admin.docentes.index', compact('docentes'));
+        return view('admin.docentes.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        $docentes = Docente::all();
+        /* $datos = request()->all();
 
-        return view('admin.docentes.index', compact('docentes'));
+        return response()->json($datos); */ 
+
+        $request->validate([
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'ci' => 'required|unique:docentes',
+            'fecha_nacimiento' => 'required',
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'nombres' => 'required',
+            'profesion' => 'required',
+            'rol' => 'required',
+            'email' => 'required|unique:users',
+            'foto' => 'required|image'
+        ]);
+
+        $usuario = new User();
+        $usuario->name = $request->nombres . " " . $request->apellidos;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->ci);
+        $usuario->save();
+
+        $usuario->assignRole($request->rol);
+
+        $docente = new Docente();
+        $docente->usuario_id = $usuario->id;
+        $docente->nombres = $request->nombres;
+        $docente->apellidos = $request->apellidos;
+        $docente->ci = $request->ci;
+        $docente->fecha_nacimiento = $request->fecha_nacimiento;
+        $docente->telefono = $request->telefono;
+        $docente->direccion = $request->direccion;
+        $docente->profesion = $request->profesion;
+
+        $foto = $request->file("foto");
+        $nombreArchivo = time() . "_" . $foto->getClientOriginalName();
+        $rutaDestino = public_path("uploads/fotos_docente");
+        $foto->move($rutaDestino, $nombreArchivo);
+        $fotoPath = "uploads/fotos_docente/" . $nombreArchivo;
+        $docente->foto = $fotoPath;
+
+        $docente->save();
+
+        return redirect()->route("admin.docente.index")
+            ->with("mensaje", "Docente creado correctamente")
+            ->with("icono", "success");
     }
 
     public function show(Docente $docente)
     {
-        $docentes = Docente::all();
-
-        return view('admin.docentes.index', compact('docentes'));
+        /*  */
     }
 
     public function edit(Docente $docente)
     {
-        $docentes = Docente::all();
-
-        return view('admin.docentes.index', compact('docentes'));
+        
     }
 
     public function update(Request $request, Docente $docente)
     {
-        $docentes = Docente::all();
-
-        return view('admin.docentes.index', compact('docentes'));
+        
     }
 
     public function destroy(Docente $docente)
     {
-        $docentes = Docente::all();
-
-        return view('admin.docentes.index', compact('docentes'));
+        
     }
 }
