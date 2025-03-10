@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Docente;
 use App\Models\User;
+use App\Models\DocenteFormacion;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -76,9 +77,15 @@ class DocenteController extends Controller
             ->with("icono", "success");
     }
 
-    public function show(Docente $docente)
-    {
-        /*  */
+    public function show($id)
+    {   
+        $roles = Role::all();
+
+        $formaciones = DocenteFormacion::where('docente_id', $id)->get();
+
+        $docente = Docente::find($id);
+
+        return view('admin.docentes.show', compact('docente', 'roles', 'formaciones'));
     }
 
     public function edit(Docente $docente)

@@ -218,3 +218,7 @@ Route::put('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::clas
 
 Route::delete('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::class, 'destroy'])
 ->name('admin.docente.destroy')->middleware('auth'); 
+
+// Rutas para Docente Formación
+Route::post('/admin/docentes/createformacion/{id}', [App\Http\Controllers\DocenteFormacionController::class, 'store'])
+->name('admin.docenteformacion.store')->middleware('auth');

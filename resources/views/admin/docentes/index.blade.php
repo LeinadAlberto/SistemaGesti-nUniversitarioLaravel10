@@ -44,11 +44,13 @@
                                     <td class="text-center align-middle">{{ $contador++ }}</td>
 
                                     {{-- <td>{{ $administrativo->usuario->roles->pluck('name')->implode(', ') }}</td> --}}
-                                    <td>{{ $docente->nombres }}</td>
-                                    <td>{{ $docente->apellidos }}</td>
-                                    <td>{{ $docente->ci }}</td>
-                                    <td>{{ $docente->usuario->email }}</td>
-                                    <td>{{ $docente->foto }}</td>
+                                    <td class="align-middle">{{ $docente->nombres }}</td>
+                                    <td class="align-middle">{{ $docente->apellidos }}</td>
+                                    <td class="text-center align-middle">{{ $docente->ci }}</td>
+                                    <td class="text-center align-middle">{{ $docente->usuario->email }}</td>
+                                    <td class="text-center align-middle">
+                                        <img src="{{ url($docente->foto) }}" alt="image docente" width="80px">
+                                    </td>
                                     
                                     <!-- Botones Ver, Editar y Elimninar -->
                                     <td class="text-center align-middle">

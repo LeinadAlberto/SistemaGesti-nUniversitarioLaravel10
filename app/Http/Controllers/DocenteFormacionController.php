@@ -26,9 +26,41 @@ class DocenteFormacionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        /* $datos = request()->all();
+
+        return response()->json($datos); */
+
+        $request->validate([
+            'titulo' => 'required',
+            'intitucion' => 'required',
+            'nivel' => 'required',
+            'ano_graduacion' => 'required',
+            'archivo' => 'required'
+        ]);
+
+        $formacion = new DocenteFormacion();
+
+        $formacion->docente_id = $id;
+        $formacion->titulo = $request->titulo;
+        $formacion->intitucion = $request->intitucion;
+        $formacion->nivel = $request->nivel;
+        $formacion->ano_graduacion = $request->ano_graduacion;
+
+        $archivo = $request->file("archivo");
+        $nombreArchivo = time() . "_" . $archivo->getClientOriginalName();
+        $rutaDestino = public_path("uploads/archivos_docente");
+        $archivo->move($rutaDestino, $nombreArchivo);
+        $archivoPath = "uploads/archivos_docente/" . $nombreArchivo;
+        
+        $formacion->archivo = $archivoPath;
+
+        $formacion->save();
+
+        return redirect()->back()
+            ->with("mensaje", "Formación creada correctamente")
+            ->with("icono", "success");
     }
 
     /**
