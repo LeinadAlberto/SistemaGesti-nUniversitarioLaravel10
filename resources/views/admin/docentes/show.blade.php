@@ -423,9 +423,9 @@
 
                 <div class="card-body">
 
-                    <div class="row">
+                    
 
-                        <table id="example1" class="table table-bordered table-hover table-striped">
+                        <table id="example1" class="table table-bordered table-hover table-striped table-sm">
                             <thead>
                                 <tr class="text-center text-white" style="background-color: #212529">
                                     <th>Nro</th>
@@ -448,26 +448,17 @@
                                         <td class="align-middle">{{ $formacion->institucion }}</td>
                                         <td class="text-center align-middle">{{ $formacion->nivel }}</td>
                                         <td class="text-center align-middle">{{ $formacion->ano_graduacion }}</td>
-                                        <td class="text-center align-middle">{{ $formacion->archivo }}</td>
+                                        <td class="text-center align-middle">
+                                            <a href="{{ url($formacion->archivo) }}" target="_blank" class="btn btn-success">Ver archivo</a>
+                                            
+                                        </td>
                                         
-                                        <!-- Botones Ver, Editar y Elimninar -->
+                                        <!-- Boton Elimninar -->
                                         <td class="text-center align-middle">
                                             <div class="btn-group" role="group">
                                                 
-                                                {{-- <a href="{{ url('/admin/docentes/' . $docente->id) }}" 
-                                                    class="btn btn-sm btn-info" 
-                                                    style="border-radius: 0px 0px 0px 0px">
-                                                    <i class="fas fa-eye" title="Ver"></i>
-                                                </a>
-    
-                                                <a href="{{ url('/admin/docentes/' . $docente->id . '/edit') }}" 
-                                                    class="btn btn-sm btn-success" 
-                                                    style="border-radius: 0px 0px 0px 0px">
-                                                    <i class="fas fa-pencil-alt" title="Editar"></i>
-                                                </a>
-    
-                                                <form action="{{ url('/admin/docentes',$docente->id) }}" method="post"
-                                                    onclick="preguntar{{$docente->id}}(event)" id="miFormulario{{$docente->id}}">
+                                                <form action="{{ url('/admin/docentes/formacion/' . $formacion->id) }}" method="post"
+                                                    onclick="preguntar{{$formacion->id}}(event)" id="miFormulario{{$formacion->id}}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 4px 4px 0px">
@@ -475,7 +466,7 @@
                                                     </button>
                                                 </form>
                                                 <script>
-                                                    function preguntar{{$docente->id}}(event) {
+                                                    function preguntar{{$formacion->id}}(event) {
                                                         event.preventDefault();
                                                         Swal.fire({
                                                             title: '¿Desea eliminar este registro?',
@@ -488,12 +479,12 @@
                                                             denyButtonText: 'Cancelar', 
                                                         }).then( (result) => {
                                                             if (result.isConfirmed) {
-                                                                var form = $('#miFormulario{{$docente->id}}');
+                                                                var form = $('#miFormulario{{$formacion->id}}');
                                                                 form.submit();
                                                             }
                                                         }); 
                                                     }
-                                                </script> --}}
+                                                </script> 
     
                                             </div><!-- /.btn-group -->
                                         </td>
@@ -502,7 +493,7 @@
                             </tbody>
                         </table>
 
-                    </div> 
+                     
 
                     <hr class="mb-4">
 

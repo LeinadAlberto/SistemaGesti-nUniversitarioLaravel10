@@ -28,13 +28,9 @@ class DocenteFormacionController extends Controller
      */
     public function store(Request $request, $id)
     {
-        /* $datos = request()->all();
-
-        return response()->json($datos); */
-
         $request->validate([
             'titulo' => 'required',
-            'intitucion' => 'required',
+            'institucion' => 'required',
             'nivel' => 'required',
             'ano_graduacion' => 'required',
             'archivo' => 'required'
@@ -44,7 +40,7 @@ class DocenteFormacionController extends Controller
 
         $formacion->docente_id = $id;
         $formacion->titulo = $request->titulo;
-        $formacion->intitucion = $request->intitucion;
+        $formacion->institucion = $request->institucion;
         $formacion->nivel = $request->nivel;
         $formacion->ano_graduacion = $request->ano_graduacion;
 
@@ -90,8 +86,19 @@ class DocenteFormacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DocenteFormacion $docenteFormacion)
+    public function destroy($id)
     {
-        //
+        $formacion = DocenteFormacion::find($id);
+
+        if (file_exists(public_path($formacion->archivo))) {
+            unlink(public_path($formacion->archivo));
+        }
+
+        $formacion->delete();
+
+        return redirect()->back()
+            ->with("mensaje", "Formación eliminada correctamente")
+            ->with("icono", "success");
+        
     }
 }
