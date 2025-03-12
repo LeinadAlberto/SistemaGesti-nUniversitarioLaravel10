@@ -286,7 +286,7 @@
                     <div class="card-tools">
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                        <button style="background-color: rgb(8, 46, 55); color: white; border: none;" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                             Añadir Formación
                         </button>
                         
@@ -294,9 +294,9 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-info">
+                                    <div class="modal-header" style="background-color: rgb(8, 46, 55); color: white;">
                                         <h5 class="modal-title" id="exampleModalLabel">Registro de Formación</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -406,7 +406,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-info">Registrar</button>
+                                                        <button type="submit" class="btn btn-info" style="background-color: rgb(8, 46, 55); color: white;">Registrar</button>
                                                     </div><!-- /.form-group -->
                                                 </div><!-- /.col-md-12 -->
                                             </div><!-- /.row -->
@@ -427,7 +427,7 @@
 
                         <table id="example1" class="table table-bordered table-hover table-striped table-sm">
                             <thead>
-                                <tr class="text-center text-white" style="background-color: #212529">
+                                <tr class="text-center text-white" style="background-color: rgb(8, 46, 55); color: white; border: none;">
                                     <th>Nro</th>
                                     <th>Título</th>
                                     <th>Institución</th>

@@ -88,9 +88,13 @@ class DocenteController extends Controller
         return view('admin.docentes.show', compact('docente', 'roles', 'formaciones'));
     }
 
-    public function edit(Docente $docente)
+    public function edit($id)
     {
-        
+        $docente = Docente::find($id);
+
+        $roles = Role::all();
+
+        return view('admin.docentes.edit', compact('docente', 'roles'));
     }
 
     public function update(Request $request, Docente $docente)
