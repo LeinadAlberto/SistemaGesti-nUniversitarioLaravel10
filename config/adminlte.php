@@ -414,6 +414,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Estudiantes',
+            'url' => 'admin/estudiantes',
+            'icon' => 'fas fa-fw fa-user-graduate',
+            'classes' => 'bg-info text-white',
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',

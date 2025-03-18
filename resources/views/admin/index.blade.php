@@ -15,7 +15,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Gestiones Registradas</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Gestiones</span>
                     <span class="info-box-number">
                         {{  $total_gestiones }} 
                         @if($total_gestiones == 1)
@@ -36,7 +36,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Carreras Registradas</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Carreras</span>
                     <span class="info-box-number">
                         {{  $total_carreras }} 
                         @if($total_carreras == 1)
@@ -57,7 +57,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Niveles Registrados</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Niveles</span>
                     <span class="info-box-number">
                         {{  $total_niveles }} 
                         @if($total_niveles == 1)
@@ -78,7 +78,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Turnos Registrados</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Turnos</span>
                     <span class="info-box-number">
                         {{  $total_turnos }} 
                         @if($total_turnos == 1)
@@ -99,7 +99,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Paralelos Registrados</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Paralelos</span>
                     <span class="info-box-number">
                         {{  $total_paralelos }} 
                         @if($total_paralelos == 1)
@@ -120,7 +120,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Periodos Registrados</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Periodos</span>
                     <span class="info-box-number">
                         {{  $total_periodos }} 
                         @if($total_periodos == 1)
@@ -141,7 +141,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Materias Registradas</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Materias</span>
                     <span class="info-box-number">
                         {{  $total_materias }} 
                         @if($total_materias == 1)
@@ -162,7 +162,7 @@
                 </span>
                 
                 <div class="info-box-content">
-                    <span class="info-box-text text-info" style="font-weight: bold">Roles Registrados</span>
+                    <span class="info-box-text text-info" style="font-weight: bold">Roles</span>
                     <span class="info-box-number">
                         {{  $total_roles }} 
                         @if($total_roles == 1)
@@ -190,6 +190,27 @@
                             Administrativo
                         @else
                             Administrativos
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
+
+        <!-- Docentes -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/capacitacion.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Docentes</span>
+                    <span class="info-box-number">
+                        {{  $total_docentes }} 
+                        @if($total_docentes == 1)
+                            Docente
+                        @else
+                            Docentes
                         @endif
                     </span>
                 </div><!-- /.info-box-content -->

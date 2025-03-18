@@ -10,6 +10,7 @@ use App\Models\Turno;
 use App\Models\Paralelo;
 use App\Models\Periodo;
 use App\Models\Materia;
+use App\Models\Docente;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -26,6 +27,7 @@ class AdminController extends Controller
         $total_materias = Materia::count();
         $total_roles = Role::count();
         $total_administrativos = Administrativo::count();
+        $total_docentes = Docente::count();
 
         return view("admin.index", compact( 'total_gestiones', 
                                             'total_carreras', 
@@ -35,6 +37,7 @@ class AdminController extends Controller
                                             'total_periodos', 
                                             'total_materias',
                                             'total_roles',
-                                            'total_administrativos'));
+                                            'total_administrativos',
+                                            'total_docentes'));
     }
 }

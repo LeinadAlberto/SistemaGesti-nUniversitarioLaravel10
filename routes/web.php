@@ -225,3 +225,25 @@ Route::post('/admin/docentes/createformacion/{id}', [App\Http\Controllers\Docent
 
 Route::delete('/admin/docentes/formacion/{id}', [App\Http\Controllers\DocenteFormacionController::class, 'destroy'])
 ->name('admin.docenteformacion.destroy')->middleware('auth'); 
+
+// Rutas para Estudiantes
+Route::get('/admin/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])
+->name('admin.estudiante.index')->middleware('auth');
+
+Route::get('/admin/estudiantes/create', [App\Http\Controllers\EstudianteController::class, 'create'])
+->name('admin.estudiante.create')->middleware('auth');
+
+Route::post('/admin/estudiantes/create', [App\Http\Controllers\EstudianteController::class, 'store'])
+->name('admin.estudiante.store')->middleware('auth');
+
+Route::get('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'show'])
+->name('admin.estudiante.show')->middleware('auth');
+
+Route::get('/admin/estudiantes/{id}/edit', [App\Http\Controllers\EstudianteController::class, 'edit'])
+->name('admin.estudiante.edit')->middleware('auth');
+
+Route::put('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'update'])
+->name('admin.estudiante.update')->middleware('auth');
+
+Route::delete('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'destroy'])
+->name('admin.estudiante.destroy')->middleware('auth'); 
