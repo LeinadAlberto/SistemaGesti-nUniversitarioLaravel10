@@ -242,7 +242,7 @@
 
                                             <center>
                                                 <output id="list">
-                                                    <img src="{{ url($docente->foto) }}" width="200px" alt="">
+                                                    <img src="{{ url($docente->foto) }}" width="200px" alt="imagen docente">
                                                     
                                                 </output>
                                             </center>

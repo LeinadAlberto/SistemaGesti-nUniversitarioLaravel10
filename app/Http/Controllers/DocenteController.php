@@ -38,7 +38,6 @@ class DocenteController extends Controller
             'fecha_nacimiento' => 'required',
             'telefono' => 'required',
             'direccion' => 'required',
-            'nombres' => 'required',
             'profesion' => 'required',
             'rol' => 'required',
             'email' => 'required|unique:users',
