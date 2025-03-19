@@ -216,6 +216,27 @@
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div><!-- /.col-md-3 -->
+
+        <!-- Estudiantes -->
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <span class="info-box-icon bg-info">
+                    <img src="{{ url("/img/estudiantes.gif") }}" width="100%" alt="imagen">
+                </span>
+                
+                <div class="info-box-content">
+                    <span class="info-box-text text-info" style="font-weight: bold">Estudiantes</span>
+                    <span class="info-box-number">
+                        {{  $total_estudiantes }} 
+                        @if($total_estudiantes == 1)
+                            Estudiante
+                        @else
+                            Estudiantes
+                        @endif
+                    </span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col-md-3 -->
     </div><!-- /.row -->
 @stop
 
