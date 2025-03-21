@@ -20,4 +20,8 @@ class Carrera extends Model
     {
         return $this->hasMany(Materia::class, 'carrera_id');
     }
+
+    public function matriculaciones() {
+        return $this->hasMany(Matriculacion::class);
+    } 
 }

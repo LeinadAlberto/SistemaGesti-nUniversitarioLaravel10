@@ -421,6 +421,13 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        [
+            'text' => 'Matriculaciones',
+            'url' => 'admin/matriculaciones',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+            'classes' => 'bg-info text-white',
+        ],
+
         /* ['header' => 'labels'], */
         /* [
             'text' => 'important',

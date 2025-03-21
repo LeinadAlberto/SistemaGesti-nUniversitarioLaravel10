@@ -21,4 +21,8 @@ class Materia extends Model
     {
         return $this->belongsTo(Carrera::class, 'carrera_id');
     }
+
+    public function asignacionMaterias() {
+        return $this->hasMany(AsignacionMateria::class);
+    } 
 }
