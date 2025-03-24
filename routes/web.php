@@ -247,3 +247,25 @@ Route::put('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController
 
 Route::delete('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'destroy'])
 ->name('admin.estudiante.destroy')->middleware('auth'); 
+
+// Rutas para Matriculaciones
+Route::get('/admin/matriculaciones', [App\Http\Controllers\MatriculacionController::class, 'index'])
+->name('admin.matriculacion.index')->middleware('auth');
+
+Route::get('/admin/matriculaciones/create', [App\Http\Controllers\MatriculacionController::class, 'create'])
+->name('admin.matriculacion.create')->middleware('auth');
+
+Route::post('/admin/matriculaciones/create', [App\Http\Controllers\MatriculacionController::class, 'store'])
+->name('admin.matriculacion.store')->middleware('auth');
+
+Route::get('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'show'])
+->name('admin.matriculacion.show')->middleware('auth');
+
+Route::get('/admin/matriculaciones/{id}/edit', [App\Http\Controllers\MatriculacionController::class, 'edit'])
+->name('admin.matriculacion.edit')->middleware('auth');
+
+Route::put('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'update'])
+->name('admin.matriculacion.update')->middleware('auth');
+
+Route::delete('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'destroy'])
+->name('admin.matriculacion.destroy')->middleware('auth'); 

@@ -10,6 +10,7 @@ use App\Models\Turno;
 use App\Models\Paralelo;
 use App\Models\Periodo;
 use App\Models\Materia;
+use App\Models\Estudiante;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -79,6 +80,27 @@ class DatabaseSeeder extends Seeder
             'carrera_id' => '1',
             'nombre' => 'FUNDAMENTOS DE PROGRAMACION',
             'codigo' => 'INFO-FP-1'
+        ]);
+
+        $usuario = User::create([
+            'name' => 'Soledad Veronica Collasos Mena',
+            'email' => 'soledad.veronica@gmail.com',
+            'password' => Hash::make('6017656')
+        ])->assignRole('ESTUDIANTE');
+
+        Estudiante::create([
+            'usuario_id' => $usuario->id,
+            'nombres' => 'Soledad Veronica',
+            'apellidos' => 'Collasos Mena',
+            'ci' => '6017656',
+            'fecha_nacimiento' => '2010-03-15',
+            'telefono' => '69945584',
+            'ref_celular' => '68856432',
+            'parentesco' => 'Padre',
+            'Profesion' => 'Abogado',
+            'direccion' => 'Miraflores, Calle 3, N° 456',
+            'foto' => 'foto.jpg',
+            'estado' => 'activo'
         ]);
     }
 }
