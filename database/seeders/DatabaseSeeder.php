@@ -82,13 +82,13 @@ class DatabaseSeeder extends Seeder
             'codigo' => 'INFO-FP-1'
         ]);
 
-        $usuario = User::create([
+        /* $usuario = User::create([
             'name' => 'Soledad Veronica Collasos Mena',
             'email' => 'soledad.veronica@gmail.com',
             'password' => Hash::make('6017656')
-        ])->assignRole('ESTUDIANTE');
+        ])->assignRole('ESTUDIANTE'); */
 
-        Estudiante::create([
+        /* Estudiante::create([
             'usuario_id' => $usuario->id,
             'nombres' => 'Soledad Veronica',
             'apellidos' => 'Collasos Mena',
@@ -101,6 +101,8 @@ class DatabaseSeeder extends Seeder
             'direccion' => 'Miraflores, Calle 3, N° 456',
             'foto' => 'foto.jpg',
             'estado' => 'activo'
-        ]);
+        ]); */
+
+        $this->call([EstudianteSeeder::class]);
     }
 }
