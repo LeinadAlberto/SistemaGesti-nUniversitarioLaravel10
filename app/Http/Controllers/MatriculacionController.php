@@ -22,6 +22,10 @@ class MatriculacionController extends Controller
         return view('admin.matriculaciones.create', compact('estudiantes'));
     }
 
+    public function buscar_estudiante($id) {
+        
+    }
+
     public function store(Request $request)
     {
         

@@ -17,11 +17,24 @@ class EstudianteFactory extends Factory
      */
     public function definition(): array
     {
+
+        $nombres = $this->faker->firstName;
+        $apellidos = $this->faker->lastName;
+        $ci = $this->faker->unique()->numerify("#######");
+
+        $usuario = User::create([
+            "name" => $nombres . " " . $apellidos,
+            "email" => $this->faker->unique()->safeEmail,
+            "password" => bcrypt($ci)
+        ]);
+
+        $usuario->assignRole("ESTUDIANTE");
+
         return [
-            "usuario_id" => User::factory(),
-            "nombres" => $this->faker->firstName,
-            "apellidos" => $this->faker->lastName,
-            "ci" => $this->faker->unique()->numerify("#######"),
+            "usuario_id" => $usuario->id,
+            "nombres" => $nombres,
+            "apellidos" => $apellidos,
+            "ci" => $ci,
             'fecha_nacimiento' => $this->faker->date("Y-m-d", "2000-12-31"),
             "telefono" => $this->faker->numerify("########"),
             "ref_celular" => $this->faker->numerify("########"),

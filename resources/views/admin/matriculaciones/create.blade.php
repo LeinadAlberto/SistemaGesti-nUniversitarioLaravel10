@@ -27,7 +27,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Buscar Estudiante: </label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="" class="form-control select2">
                                         <option value="">Buscar...</option>
                                         @foreach ($estudiantes as $estudiante)
                                             <option value="{{ $estudiante->id }}">
@@ -98,10 +98,56 @@
 @stop
 
 @section('css')
-    
+    <style>
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #ced4da;
+                border-top-color: rgb(206, 212, 218);
+                border-right-color: rgb(206, 212, 218);
+                border-bottom-color: rgb(206, 212, 218);
+                border-left-color: rgb(206, 212, 218);
+            padding: .46875rem .75rem;
+            height: calc(2.25rem + 2px);
+            
+        }
+    </style>
 @stop
 
 
 @section('js')
-    
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({});
+
+            // Inicializar select2
+            $('.select2').select2({
+                placeholder: "Buscar...",
+                /* allowClear: true */
+            });
+
+            // Enfocar el campo de búsqueda al hacer clic en el select
+            $(document).on('select2:open', () => {
+                document.querySelector('.select2-container--open .select2-search__field').focus();
+            });
+
+            $('.select2').on('change', function() {
+                var id = $(this).val();
+                
+                if ($id) {
+                    $.ajax({
+                        url: '{{ url('/admin/matriculaciones/buscar_estudiante/') }}' + '/' +id,
+                        type: 'GET',
+                        success: function(estudiante) {
+
+                        }, 
+                        error: function() {
+                            alert('No se pudo obtener la información del Estudiante');
+                        }
+                    });
+
+
+
+                }
+            });
+        });
+    </script>
 @stop
