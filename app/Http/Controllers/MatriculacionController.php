@@ -22,8 +22,17 @@ class MatriculacionController extends Controller
         return view('admin.matriculaciones.create', compact('estudiantes'));
     }
 
-    public function buscar_estudiante($id) {
-        
+    public function buscar_estudiante($id) 
+    {
+        $estudiante = Estudiante::with("usuario")->find($id);
+
+        if (!$estudiante) {
+            return response()->json(["error" => "Estuante no encontrado"]);
+        }
+
+        $estudiante->foto_url = url($estudiante->foto);
+
+        return response()->json($estudiante);
     }
 
     public function store(Request $request)
