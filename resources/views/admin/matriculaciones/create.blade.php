@@ -8,7 +8,7 @@
 
     <div class="row">
 
-        <!-- Datos del Estudiante -->
+        <!-- Tarjeta lado Isquierdo - Datos del Estudiante -->
         <div class="col-md-6">
 
             <div class="card card-info">
@@ -19,129 +19,114 @@
 
                 <div class="card-body">
 
-                    <form action="{{ url('admin/matriculaciones/create') }}" method="post">
-                        
-                        @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Buscar Estudiante: </label>
+                                <select name="" id="buscar_estudiante" class="form-control select2">
+                                    <option value="">Buscar...</option>
+                                    @foreach ($estudiantes as $estudiante)
+                                        <option value="{{ $estudiante->id }}">
+                                            {{ $estudiante->apellidos . ' ' . $estudiante->nombres . ' - ' . $estudiante->ci }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                    
+                    <hr class="mb-4">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="">Buscar Estudiante: </label>
-                                    <select name="" id="" class="form-control select2">
-                                        <option value="">Buscar...</option>
-                                        @foreach ($estudiantes as $estudiante)
-                                            <option value="{{ $estudiante->id }}">
-                                                {{ $estudiante->apellidos . ' ' . $estudiante->nombres . ' - ' . $estudiante->ci }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div><!-- /.col-md-12 -->
-                        </div><!-- /.row -->
-                        
-                        <hr class="mb-4">
+                    <div class="row" id="datos_estudiante" style="display: none;">
 
-                        <div class="row">
+                        <div class="col-md-12 d-flex align-items-stretch flex-column">
 
-                            <div class="col-md-12 d-flex align-items-stretch flex-column">
+                            <div class="card bg-light d-flex flex-fill">
 
-                                <div class="card bg-light d-flex flex-fill">
+                                <div class="card-header text-muted border-bottom-0 pb-0">
+                                    Apellido(s) y Nombre(s)
+                                </div><!-- /.card-header -->
 
-                                    <div class="card-header text-muted border-bottom-0 pb-0">
-                                        Apellido(s) y Nombre(s)
-                                    </div><!-- /.card-header -->
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="lead"><b id="nombre_apellido"></b></h2>
+                                            <p class="text-muted text-sm">
+                                                <b>Profesión: </b> 
+                                                <span id="profesion"></span>
+                                            </p>
+                                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                <!-- Cédula de Identidad-->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-id-card"></i>
+                                                    </span> 
+                                                    <b>CI: </b><span id="ci"></span>
+                                                </li>
 
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-7">
-                                                <h2 class="lead"><b id="nombre_apellido"></b></h2>
-                                                <p class="text-muted text-sm">
-                                                    <b>Profesión: </b> 
-                                                    <span id="profesion"></span>
-                                                </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <!-- Cédula de Identidad-->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-id-card"></i>
-                                                        </span> 
-                                                        <b>CI: </b><span id="ci"></span>
-                                                    </li>
+                                                <!-- Fecha de Nacimiento -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-calendar-alt"></i>
+                                                    </span> 
+                                                    <b>Fecha de Nacimiento: </b><span id="fecha_nacimiento"></span>
+                                                </li>
 
-                                                    <!-- Fecha de Nacimiento -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-calendar-alt"></i>
-                                                        </span> 
-                                                        <b>Fecha de Nacimiento: </b><span id="fecha_nacimiento"></span>
-                                                    </li>
+                                                <!-- Teléfono -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-phone"></i>
+                                                    </span> 
+                                                    <b>Teléfono: </b><span id="telefono"></span>
+                                                </li>
 
-                                                    <!-- Teléfono -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-phone"></i>
-                                                        </span> 
-                                                        <b>Teléfono: </b><span id="telefono"></span>
-                                                    </li>
+                                                <!-- Correo Electrónico -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-envelope-open"></i>
+                                                    </span> 
+                                                    <b>Correo Electrónico: </b><span id="email"></span>
+                                                </li>
 
-                                                    <!-- Correo Electrónico -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-envelope-open"></i>
-                                                        </span> 
-                                                        <b>Correo Electrónico: </b><span id="email"></span>
-                                                    </li>
+                                                <!-- Dirección -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-building"></i>
+                                                    </span> 
+                                                    <b>Dirección: </b><span id="direccion"></span>
+                                                </li>
+                                                
+                                                <hr>
 
-                                                    <!-- Dirección -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-building"></i>
-                                                        </span> 
-                                                        <b>Dirección: </b><span id="direccion"></span>
-                                                    </li>
-                                                    
-                                                    <hr>
+                                                <!-- Número de Referencia -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-mobile-alt"></i>
+                                                    </span> 
+                                                    <b>Número de referencia: </b><span id="ref_celular"></span>
+                                                </li>
+                                                
+                                                <!-- Parentesco -->
+                                                <li class="small">
+                                                    <span class="fa-li">
+                                                        <i class="fas fa-lg fa-user-friends"></i>
+                                                    </span> 
+                                                    <b>Parentesco: </b><span id="parentesco"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                                    <!-- Número de Referencia -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-mobile-alt"></i>
-                                                        </span> 
-                                                        <b>Número de referencia: </b><span id="ref_celular"></span>
-                                                    </li>
-                                                    
-                                                    <!-- Parentesco -->
-                                                    <li class="small">
-                                                        <span class="fa-li">
-                                                            <i class="fas fa-lg fa-user-friends"></i>
-                                                        </span> 
-                                                        <b>Parentesco: </b><span id="parentesco"></span>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <div class="col-5 text-center">
+                                            <img src="" id="foto_estudiante" alt="Foto del estudiante" class="img-circle img-fluid" width="128px" height="128px">
+                                        </div>
+                                    </div><!-- /.row -->
+                                </div><!-- /.card-body -->
 
-                                            <div class="col-5 text-center">
-                                                <img src="" id="foto_estudiante" alt="Foto del estudiante" class="img-circle img-fluid" width="128px" height="128px">
-                                            </div>
-                                        </div><!-- /.row -->
-                                    </div><!-- /.card-body -->
+                            </div><!-- /.card -->
 
-                                </div><!-- /.card -->
+                        </div><!-- /.col-md-12 -->
 
-                            </div><!-- /.col-md-12 -->
-
-                        </div><!-- /.row -->
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-secondary">Cancelar</a>
-                                    <button type="submit" class="btn btn-info">Registrar</button>
-                                </div><!-- /.form-group -->
-                            </div><!-- /.col-md-12 -->
-                        </div><!-- /.row -->
-
-                    </form>
+                    </div><!-- /.row -->
 
                 </div><!-- /.card-body --> 
 
@@ -149,39 +134,160 @@
 
         </div><!-- /.col-md-6 -->
 
+        <!-- Tarjetas lado Derecho - Datos de formulario para Matriculacioón-->
         <div class="col-md-6">
+            <!-- Tarjeta Superior Derecha -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info">
 
-            <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Llene los datos del formulario para la Matriculación</h3>
+                        </div><!-- /.card-header -->
+        
+                        <div class="card-body">
+                            
+                            <form action="{{ url('admin/matriculaciones/create') }}" method="post">
+        
+                                @csrf
+        
+                                <div class="row">
+        
+                                    <!-- ID del Estudiante -->
+                                    <input type="text" id="estudiante_id" name="estudiante_id" hidden>
+            
+                                    <!-- Nombre Gestión Académica-->
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="">Gestión Académica <span class="text-danger">*</span></label>
+            
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-book"></i></span>
+                                                </div><!-- /.input-group-prepend -->
+                                                <select name="gestion_id" class="form-control select2" required>
+                                                    <option value="">Seleccionar Gestión Académica...</option>
+                                                    @foreach ($gestiones as $gestion)
+                                                        <option value="{{ $gestion->id }}">{{ $gestion->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div><!-- /.input-group -->
+                                        </div><!-- /.form-group -->
+            
+                                    </div><!-- /.col-md-6 -->
+            
+                                    <!-- Nombre Nivel-->
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="">Nivel Académico <span class="text-danger">*</span></label>
+            
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                                </div><!-- /.input-group-prepend -->
+                                                <select name="nivel_id" class="form-control select2" required>
+                                                    <option value="">Seleccionar Nivel Académico...</option>
+                                                    @foreach ($niveles as $nivel)
+                                                        <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div><!-- /.input-group -->
+                                        </div><!-- /.form-group -->
+            
+                                    </div><!-- /.col-md-6 -->
+            
+                                </div><!-- /.row -->
+            
+                                <div class="row">
+            
+                                    <!-- Nombre Carrera-->
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="">Carrera <span class="text-danger">*</span></label>
+            
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                                                </div><!-- /.input-group-prepend -->
+                                                <select name="carrera_id" class="form-control select2" required>
+                                                    <option value="">Seleccionar Carrera...</option>
+                                                    @foreach ($carreras as $carrera)
+                                                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div><!-- /.input-group -->
+                                        </div><!-- /.form-group -->
+            
+                                    </div><!-- /.col-md-6 -->
+                                    
+                                    <!-- Nombre Periodo-->
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="">Periodo Académico <span class="text-danger">*</span></label>
+            
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                </div><!-- /.input-group-prepend -->
+                                                <select name="periodo_id" class="form-control select2" required>
+                                                    <option value="">Seleccionar Periodo Académico...</option>
+                                                    @foreach ($periodos as $periodo)
+                                                        <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div><!-- /.input-group -->
+                                        </div><!-- /.form-group -->
+            
+                                    </div><!-- /.col-md-6 -->
+            
+                                </div><!-- /.row -->
+                                    
+                                <hr class="mb-4">
+            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-secondary">Cancelar</a>
+                                            <button type="submit" class="btn btn-info">Registrar</button>
+                                        </div><!-- /.form-group -->
+                                    </div><!-- /.col-md-12 -->
+                                </div><!-- /.row -->
+        
+                            </form>
+        
+        
+                        </div><!-- /.card-body --> 
+        
+                    </div><!-- /.card -->
+                </div>
+            </div><!-- /.row -->
 
-                <div class="card-header">
-                    <h3 class="card-title">Llene los datos del formulario para la Matriculación</h3>
-                </div><!-- /.card-header -->
+            <!-- Tarjeta Inferior Derecha -->
+            <div class="row" id="historial_academico" style="display: none;">
+                <div class="col-md-12">
+                    <div class="card card-info">
 
-                <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="card-title">Historial Académico</h3>
+                        </div><!-- /.card-header -->
+        
+                        <div class="card-body">
+                            
+                            <div id="tabla_historial">
 
-                    <form action="{{ url('admin/matriculaciones/create') }}" method="post">
-                        
-                        @csrf
+                                
 
-                        
-                        
-                        <hr class="mb-4">
+                            </div><!-- #tabla_historial -->
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-secondary">Cancelar</a>
-                                    <button type="submit" class="btn btn-info">Registrar</button>
-                                </div><!-- /.form-group -->
-                            </div><!-- /.col-md-12 -->
-                        </div><!-- /.row -->
-
-                    </form>
-
-                </div><!-- /.card-body --> 
-
-            </div><!-- /.card -->
-
+                        </div><!-- /.card-body --> 
+        
+                    </div><!-- /.card -->
+                </div>
+            </div><!-- /.row -->
         </div><!-- /.col-md-6 -->
 
     </div><!-- /.row -->
@@ -211,9 +317,9 @@
 
             // Inicializar select2
             $('.select2').select2({
-                placeholder: "Buscar...",
+                /* placeholder: "Buscar...", */
                 /* allowClear: true */
-                width: "100%"
+                /* width: "91%" */
             });
 
             // Enfocar el campo de búsqueda al hacer clic en el select
@@ -221,7 +327,7 @@
                 document.querySelector('.select2-container--open .select2-search__field').focus();
             });
 
-            $('.select2').on('change', function() {
+            $('#buscar_estudiante').on('change', function() {
                 var id = $(this).val();
                 
                 if (id) {
@@ -239,6 +345,9 @@
                             $('#ref_celular').html(estudiante.ref_celular);
                             $('#parentesco').html(estudiante.parentesco);
                             $('#foto_estudiante').attr("src", estudiante.foto_url).show();
+                            $('#datos_estudiante').css('display', 'block');
+                            $('#historial_academico').css('display', 'block');
+                            $('#estudiante_id').val(estudiante.id);
                         }, 
                         error: function() {
                             alert('No se pudo obtener la información del Estudiante');
