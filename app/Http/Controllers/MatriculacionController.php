@@ -32,7 +32,7 @@ class MatriculacionController extends Controller
 
     public function buscar_estudiante($id) 
     {
-        $estudiante = Estudiante::with("usuario", "matriculaciones")->find($id);
+        $estudiante = Estudiante::with("usuario", "matriculaciones.gestion", "matriculaciones.nivel", "matriculaciones.periodo", "matriculaciones.carrera")->find($id);
 
         if (!$estudiante) {
             return response()->json(["error" => "Estudiante no encontrado"]);

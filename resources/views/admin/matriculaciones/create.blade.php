@@ -279,7 +279,7 @@
                             
                             <div id="tabla_historial">
 
-                                
+
 
                             </div><!-- #tabla_historial -->
 
@@ -348,6 +348,26 @@
                             $('#datos_estudiante').css('display', 'block');
                             $('#historial_academico').css('display', 'block');
                             $('#estudiante_id').val(estudiante.id);
+
+                            if (estudiante.matriculaciones && estudiante.matriculaciones.length > 0) {
+                                var tabla = '<table class="table table-bordered">';
+                                    tabla += '<thead><tr><th>Gestión</th><th>Nivel</th><th>Carrera</th><th>Periodo</th></tr></thead>';
+                                    tabla += '<tbody>';
+                                        estudiante.matriculaciones.forEach(function(matriculacion) {
+                                            tabla += '<tr>';
+                                                tabla += '<td>' + matriculacion.gestion.nombre + '</td>';
+                                                tabla += '<td>' + matriculacion.nivel.nombre + '</td>';
+                                                tabla += '<td>' + matriculacion.carrera.nombre + '</td>';
+                                                tabla += '<td>' + matriculacion.periodo.nombre + '</td>';
+                                            tabla += '</tr>';
+                                        });
+                                    tabla += '</tbody>';
+                                    tabla += '</tbody>';
+
+                                    $('#tabla_historial').html(tabla).show();
+                            } else {
+                                $('#tabla_historial').html('<p class="text-danger"><b>No existe historial académico registrado de este estudiante. </b></p>').show();
+                            }
                         }, 
                         error: function() {
                             alert('No se pudo obtener la información del Estudiante');
