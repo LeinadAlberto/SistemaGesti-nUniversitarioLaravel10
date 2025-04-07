@@ -8,15 +8,21 @@ use App\Models\Gestion;
 use App\Models\Nivel;
 use App\Models\Periodo;
 use App\Models\Carrera;
+use App\Models\Materia;
+
 use Illuminate\Http\Request;
 
 class MatriculacionController extends Controller
 {
     public function index()
     {
-        $matriculaciones = Matriculacion::all();
+        $matriculaciones = Matriculacion::with("estudiante", "gestion", "nivel", "periodo", "carrera")->get();
 
-        return view("admin.matriculaciones.index", compact("matriculaciones"));
+        $materias = Materia::all();
+
+        /* return response()->json($matriculaciones); */
+
+        return view("admin.matriculaciones.index", compact("matriculaciones", "materias"));
     }
 
     public function create()

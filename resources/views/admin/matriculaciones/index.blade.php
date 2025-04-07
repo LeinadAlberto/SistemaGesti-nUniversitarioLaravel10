@@ -8,7 +8,7 @@
 
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             <div class="card card-outline card-info">
 
@@ -25,9 +25,14 @@
                     <table id="example1" class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr class="text-center text-white" style="background-color: #212529">
-                                <th>Nro</th>
-                                                            
-                                <th>Acciones</th>
+                                <th class="align-middle" style="width: 15px">Nro</th>
+                                <th class="align-middle">Estudiante</th>
+                                <th class="align-middle" style="width: 70px">Cédula de Identidad</th>                        
+                                <th class="align-middle">Gestión</th>                        
+                                <th class="align-middle">Nivel</th>                        
+                                <th class="align-middle">Periodo</th>                        
+                                <th class="align-middle">Carrera</th>                        
+                                <th class="align-middle">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,9 +42,54 @@
                             @foreach ($matriculaciones as $matriculacion)
                                 <tr>
                                     <td class="text-center align-middle">{{ $contador++ }}</td>
+                                    <td class="align-middle">{{ $matriculacion->estudiante->apellidos . ' ' . $matriculacion->estudiante->nombres }}</td>
+                                    <td class="text-center align-middle">{{ $matriculacion->estudiante->ci }}</td>
+                                    <td class="text-center align-middle">{{ $matriculacion->gestion->nombre }}</td>
+                                    <td class="text-center align-middle">{{ $matriculacion->nivel->nombre }}</td>
+                                    <td class="text-center align-middle">{{ $matriculacion->periodo->nombre }}</td>
+                                    <td class="text-center align-middle">{{ $matriculacion->carrera->nombre }}</td>
                                     
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group">
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-info " data-toggle="modal" data-target="#exampleModal{{ $matriculacion->id }}">
+                                                Asignar Materias <i class="fas fa-list" style="margin-left: 5px;"></i>
+                                            </button>
+  
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $matriculacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-info">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Asignación de materias</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="">Materias</label>
+                                                                    <select name="" id="" class="form-control">
+                                                                        <option value="">Seleccionar...</option>
+                                                                        @foreach ($materias as $materia)
+                                                                            @if ($matriculacion->carrera_id == $materia->carrera_id)
+                                                                                <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div><!-- /.col-md-6 -->
+                                                            </div><!-- /.row -->
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-info">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.modal -->
+  
                                             <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id . '/edit') }}" 
                                                 class="btn btn-sm btn-success" 
                                                 style="border-radius: 0px 0px 0px 0px">
@@ -117,6 +167,19 @@
         .btn-info { background-color: #17A2B8; border: none; }
         .btn-warning { background-color: #FFC107; color: #212529; border: none; }
         .btn-default { background-color: #6E7176; color: #212529; border: none; }
+
+        .btn-sm {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            line-height: 1.5; /* Altura de línea consistente */
+        }
+
+        .btn-group .btn {
+            height: 38px; /* Altura fija para todos los botones */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 @stop
 
