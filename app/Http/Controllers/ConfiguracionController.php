@@ -17,14 +17,15 @@ class ConfiguracionController extends Controller
 
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        /* $datos = request()->all();
+
+        return response()->json($datos); */
+
         $request->validate([
             "nombre" => "required|string|max:255",
             "descripcion" => "required|string|max:255",
@@ -79,35 +80,23 @@ class ConfiguracionController extends Controller
             ->with("icono", "success");
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Configuracion $configuracion)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Configuracion $configuracion)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Configuracion $configuracion)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Configuracion $configuracion)
     {
-        //
+        
     }
 }

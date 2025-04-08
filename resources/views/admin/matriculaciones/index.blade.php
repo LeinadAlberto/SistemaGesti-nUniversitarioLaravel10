@@ -58,8 +58,8 @@
                                             </button>
   
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $matriculacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
+                                            <div class="text-left modal fade" id="exampleModal{{ $matriculacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-info">
                                                             <h5 class="modal-title" id="exampleModalLabel">Asignación de materias</h5>
@@ -67,27 +67,98 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="">Materias</label>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">Seleccionar...</option>
-                                                                        @foreach ($materias as $materia)
-                                                                            @if ($matriculacion->carrera_id == $materia->carrera_id)
-                                                                                <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div><!-- /.col-md-6 -->
-                                                            </div><!-- /.row -->
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-info">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                        
+                                                        <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="post">
+                                                            
+                                                            @csrf
+
+                                                            <input type="hidden" name="matriculacion_id" value="{{ $matriculacion->id }}">
+
+                                                            <div class="modal-body">
+
+                                                                <h4 class="text-center">Materias registradas en la matricula</h4>
+
+                                                                <div class="row mb-3">
+                                                                    <table class="table table-bordered table-hover table-striped table-sm">
+                                                                        <thead>
+                                                                            <tr class="text-center">
+                                                                                <th>Nro</th>
+                                                                                <th>Materia</th>
+                                                                                <th>Código</th>
+                                                                                <th>Turno</th>
+                                                                                <th>Paralelo</th>
+                                                                                <th>Nota Final</th>
+                                                                            </tr>
+                                                                        </thead>
+
+                                                                        <tbody>
+                                                                            @php
+                                                                                $contador = 1;
+                                                                            @endphp
+                                                                            @foreach ($asignacionMaterias as $asignacionMateria)
+                                                                                @if ($asignacionMateria->matriculacion_id == $matriculacion->id)
+                                                                                    <tr>
+                                                                                        <td>{{ $contador++ }}</td>
+                                                                                        <td>{{ $asignacionMateria->materia->nombre }}</td>
+                                                                                        <td>{{ $asignacionMateria->materia->codigo }}</td>
+                                                                                        <td>{{ $asignacionMateria->turno->nombre }}</td>
+                                                                                        <td>{{ $asignacionMateria->paralelo->nombre }}</td>
+                                                                                        <td>{{ $asignacionMateria->nota_final }}</td>
+                                                                                    </tr>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div><!-- /.row -->
+
+                                                                <div class="row mb-3">
+                                                                    <!-- Materia -->
+                                                                    <div class="col-md-6">
+                                                                        <label for="">Materia</label>
+                                                                        <select name="materia_id" id="" class="form-control" required>
+                                                                            <option value="">Seleccionar...</option>
+                                                                            @foreach ($materias as $materia)
+                                                                                @if ($matriculacion->carrera_id == $materia->carrera_id)
+                                                                                    <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div><!-- /.col-md-6 -->
+    
+                                                                    <!-- Turno -->
+                                                                    <div class="col-md-6">
+                                                                        <label for="">Turno</label>
+                                                                        <select name="turno_id" id="" class="form-control" required>
+                                                                            <option value="">Seleccionar...</option>
+                                                                            @foreach ($turnos as $turno)
+                                                                                <option value="{{ $turno->id }}">{{ $turno->nombre }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div><!-- /.col-md-6 -->
+                                                                </div><!-- /.row -->
+    
+                                                                <div class="row mb-3">
+                                                                    <!-- Paralelo -->
+                                                                    <div class="col-md-6">
+                                                                        <label for="">Paralelo</label>
+                                                                        <select name="paralelo_id" id="" class="form-control" required>
+                                                                            <option value="">Seleccionar...</option>
+                                                                            @foreach ($paralelos as $paralelo)
+                                                                                <option value="{{ $paralelo->id }}">{{ $paralelo->nombre }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div><!-- /.col-md-6 -->
+                                                                </div><!-- /.row -->
+                                                            </div><!-- /.modal-body -->
+    
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                                                <button type="submit" class="btn btn-info">Asignar</button>
+                                                            </div><!-- /.modal-footer -->
+
+                                                        </form>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
                                             </div><!-- /.modal -->
   
                                             <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id . '/edit') }}" 

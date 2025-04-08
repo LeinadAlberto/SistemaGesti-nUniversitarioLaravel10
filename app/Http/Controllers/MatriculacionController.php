@@ -9,6 +9,9 @@ use App\Models\Nivel;
 use App\Models\Periodo;
 use App\Models\Carrera;
 use App\Models\Materia;
+use App\Models\Turno;
+use App\Models\Paralelo;
+use App\Models\AsignacionMateria;
 
 use Illuminate\Http\Request;
 
@@ -20,9 +23,19 @@ class MatriculacionController extends Controller
 
         $materias = Materia::all();
 
+        $turnos = Turno::all();
+
+        $paralelos = Paralelo::all();
+
+        $asignacionMaterias = AsignacionMateria::with("materia", "turno", "paralelo")->get();
+
         /* return response()->json($matriculaciones); */
 
-        return view("admin.matriculaciones.index", compact("matriculaciones", "materias"));
+        return view("admin.matriculaciones.index", compact("matriculaciones", 
+                                                            "materias", 
+                                                            "turnos", 
+                                                            "paralelos", 
+                                                            "asignacionMaterias"));
     }
 
     public function create()

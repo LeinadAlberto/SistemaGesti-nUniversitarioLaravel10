@@ -21,6 +21,10 @@ class CarreraController extends Controller
 
     public function store(Request $request)
     {
+        /* $datos = request()->all();
+
+        return response()->json($datos); */
+        
         $request->validate([
             "nombre" => "required|string|max:255"
         ]);
