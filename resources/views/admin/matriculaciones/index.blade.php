@@ -23,7 +23,9 @@
                 <div class="card-body">
 
                     <table id="example1" class="table table-bordered table-hover table-striped">
+
                         <thead>
+
                             <tr class="text-center text-white" style="background-color: #212529">
                                 <th class="align-middle" style="width: 15px">Nro</th>
                                 <th class="align-middle">Estudiante</th>
@@ -34,12 +36,17 @@
                                 <th class="align-middle">Carrera</th>                        
                                 <th class="align-middle">Acciones</th>
                             </tr>
+
                         </thead>
+
                         <tbody>
+
                             @php
                                 $contador = 1;
                             @endphp
+
                             @foreach ($matriculaciones as $matriculacion)
+
                                 <tr>
                                     <td class="text-center align-middle">{{ $contador++ }}</td>
                                     <td class="align-middle">{{ $matriculacion->estudiante->apellidos . ' ' . $matriculacion->estudiante->nombres }}</td>
@@ -49,123 +56,177 @@
                                     <td class="text-center align-middle">{{ $matriculacion->periodo->nombre }}</td>
                                     <td class="text-center align-middle">{{ $matriculacion->carrera->nombre }}</td>
                                     
+                                    <!-- Botones Asignar Materias | Editar Matriculación | Eliminar Matriculación -->
                                     <td class="text-center align-middle">
+
                                         <div class="btn-group" role="group">
 
-                                            <!-- Button trigger modal -->
+                                            <!-- Boton para Asignar Materias -->
                                             <button type="button" class="btn btn-sm btn-info " data-toggle="modal" data-target="#exampleModal{{ $matriculacion->id }}">
                                                 Asignar Materias <i class="fas fa-list" style="margin-left: 5px;"></i>
                                             </button>
   
-                                            <!-- Modal -->
-                                            <div class="text-left modal fade" id="exampleModal{{ $matriculacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <!-- Modal para Asignar Materias -->
+                                            <div class="modal text-left  fade" id="exampleModal{{ $matriculacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                
                                                 <div class="modal-dialog modal-lg">
+
                                                     <div class="modal-content">
+
                                                         <div class="modal-header bg-info">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Asignación de materias</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Asignación de Materias</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
-                                                        </div>
+                                                        </div><!-- /.modal-header -->
                                                         
-                                                        <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="post">
-                                                            
-                                                            @csrf
+                                                        <div class="modal-body">
 
+                                                            <h4 class="text-center">Materias registradas en la matricula</h4>
+
+                                                            <!-- Tabla con las materias registradas -->
+                                                            <div class="row mb-3">
+
+                                                                <table class="table table-bordered table-hover table-striped table-sm">
+
+                                                                    <thead>
+                                                                        <tr class="text-center bg-dark">
+                                                                            <th>Nro</th>
+                                                                            <th>Materia</th>
+                                                                            <th>Código</th>
+                                                                            <th>Turno</th>
+                                                                            <th>Paralelo</th>
+                                                                            <th>Nota Final</th>
+                                                                            <th>Acción</th>
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tbody>
+
+                                                                        @php
+                                                                            $contadorMaterias = 1;
+                                                                        @endphp
+
+                                                                        @foreach ($asignacionMaterias as $asignacionMateria)
+
+                                                                            @if ($asignacionMateria->matriculacion_id == $matriculacion->id)
+
+                                                                                <tr>
+                                                                                    <td class="text-center align-middle">{{ $contadorMaterias++ }}</td>
+                                                                                    <td class="text-center align-middle">{{ $asignacionMateria->materia->nombre }}</td>
+                                                                                    <td class="text-center align-middle">{{ $asignacionMateria->materia->codigo }}</td>
+                                                                                    <td class="text-center align-middle">{{ $asignacionMateria->turno->nombre }}</td>
+                                                                                    <td class="text-center align-middle">{{ $asignacionMateria->paralelo->nombre }}</td>
+                                                                                    <td class="text-center align-middle">{{ $asignacionMateria->nota_final }}</td>
+                                                                                    <td class="text-center align-middle">
+                                                                                        <form action="{{ url('/admin/matriculaciones/asignar_materia',$asignacionMateria->id) }}" method="post"
+                                                                                            onclick="preguntar1{{$asignacionMateria->id}}(event)" id="miFormulario1{{$asignacionMateria->id}}" class="d-flex justify-content-center">
+                                                                                            @csrf
+                                                                                            @method('DELETE')
+                                                                                            <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 4px 4px 4px 4px">
+                                                                                                <i class="fas fa-trash" title="Eliminar"></i>
+                                                                                            </button>
+                                                                                        </form>
+                                                                                        <script>
+                                                                                            function preguntar1{{$asignacionMateria->id}}(event) {
+                                                                                                event.preventDefault();
+                                                                                                Swal.fire({
+                                                                                                    title: '¿Desea eliminar este registro?',
+                                                                                                    text: '',
+                                                                                                    icon: 'question',
+                                                                                                    showDenyButton: true,
+                                                                                                    confirmButtonText: 'Eliminar', 
+                                                                                                    confirmButtonColor: '#A5161D', 
+                                                                                                    denyButtonColor: '#270A0A', 
+                                                                                                    denyButtonText: 'Cancelar', 
+                                                                                                }).then( (result) => {
+                                                                                                    if (result.isConfirmed) {
+                                                                                                        var form = $('#miFormulario1{{$asignacionMateria->id}}');
+                                                                                                        form.submit();
+                                                                                                    }
+                                                                                                }); 
+                                                                                            }
+                                                                                        </script>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+
+                                                                        @endforeach
+
+                                                                    </tbody>
+
+                                                                </table>
+
+                                                            </div><!-- /.row -->
+
+                                                    <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="post">
+                                                        
+                                                            @csrf
+                                                            
                                                             <input type="hidden" name="matriculacion_id" value="{{ $matriculacion->id }}">
 
-                                                            <div class="modal-body">
+                                                            <div class="row mb-3">
+                                                                <!-- Materia -->
+                                                                <div class="col-md-6">
+                                                                    <label for="">Materia</label>
+                                                                    <select name="materia_id" id="" class="form-control" required>
+                                                                        <option value="">Seleccionar...</option>
+                                                                        @foreach ($materias as $materia)
+                                                                            @if ($matriculacion->carrera_id == $materia->carrera_id)
+                                                                                <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div><!-- /.col-md-6 -->
 
-                                                                <h4 class="text-center">Materias registradas en la matricula</h4>
+                                                                <!-- Turno -->
+                                                                <div class="col-md-6">
+                                                                    <label for="">Turno</label>
+                                                                    <select name="turno_id" id="" class="form-control" required>
+                                                                        <option value="">Seleccionar...</option>
+                                                                        @foreach ($turnos as $turno)
+                                                                            <option value="{{ $turno->id }}">{{ $turno->nombre }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div><!-- /.col-md-6 -->
+                                                            </div><!-- /.row -->
 
-                                                                <div class="row mb-3">
-                                                                    <table class="table table-bordered table-hover table-striped table-sm">
-                                                                        <thead>
-                                                                            <tr class="text-center">
-                                                                                <th>Nro</th>
-                                                                                <th>Materia</th>
-                                                                                <th>Código</th>
-                                                                                <th>Turno</th>
-                                                                                <th>Paralelo</th>
-                                                                                <th>Nota Final</th>
-                                                                            </tr>
-                                                                        </thead>
+                                                            <div class="row mb-3">
+                                                                <!-- Paralelo -->
+                                                                <div class="col-md-6">
+                                                                    <label for="">Paralelo</label>
+                                                                    <select name="paralelo_id" id="" class="form-control" required>
+                                                                        <option value="">Seleccionar...</option>
+                                                                        @foreach ($paralelos as $paralelo)
+                                                                            <option value="{{ $paralelo->id }}">{{ $paralelo->nombre }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div><!-- /.col-md-6 -->
+                                                            </div><!-- /.row -->
 
-                                                                        <tbody>
-                                                                            @php
-                                                                                $contador = 1;
-                                                                            @endphp
-                                                                            @foreach ($asignacionMaterias as $asignacionMateria)
-                                                                                @if ($asignacionMateria->matriculacion_id == $matriculacion->id)
-                                                                                    <tr>
-                                                                                        <td>{{ $contador++ }}</td>
-                                                                                        <td>{{ $asignacionMateria->materia->nombre }}</td>
-                                                                                        <td>{{ $asignacionMateria->materia->codigo }}</td>
-                                                                                        <td>{{ $asignacionMateria->turno->nombre }}</td>
-                                                                                        <td>{{ $asignacionMateria->paralelo->nombre }}</td>
-                                                                                        <td>{{ $asignacionMateria->nota_final }}</td>
-                                                                                    </tr>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div><!-- /.row -->
-
-                                                                <div class="row mb-3">
-                                                                    <!-- Materia -->
-                                                                    <div class="col-md-6">
-                                                                        <label for="">Materia</label>
-                                                                        <select name="materia_id" id="" class="form-control" required>
-                                                                            <option value="">Seleccionar...</option>
-                                                                            @foreach ($materias as $materia)
-                                                                                @if ($matriculacion->carrera_id == $materia->carrera_id)
-                                                                                    <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div><!-- /.col-md-6 -->
+                                                        </div><!-- /.modal-body -->
     
-                                                                    <!-- Turno -->
-                                                                    <div class="col-md-6">
-                                                                        <label for="">Turno</label>
-                                                                        <select name="turno_id" id="" class="form-control" required>
-                                                                            <option value="">Seleccionar...</option>
-                                                                            @foreach ($turnos as $turno)
-                                                                                <option value="{{ $turno->id }}">{{ $turno->nombre }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div><!-- /.col-md-6 -->
-                                                                </div><!-- /.row -->
-    
-                                                                <div class="row mb-3">
-                                                                    <!-- Paralelo -->
-                                                                    <div class="col-md-6">
-                                                                        <label for="">Paralelo</label>
-                                                                        <select name="paralelo_id" id="" class="form-control" required>
-                                                                            <option value="">Seleccionar...</option>
-                                                                            @foreach ($paralelos as $paralelo)
-                                                                                <option value="{{ $paralelo->id }}">{{ $paralelo->nombre }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div><!-- /.col-md-6 -->
-                                                                </div><!-- /.row -->
-                                                            </div><!-- /.modal-body -->
-    
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                                                <button type="submit" class="btn btn-info">Asignar</button>
-                                                            </div><!-- /.modal-footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                                            <button type="submit" class="btn btn-info">Asignar</button>
+                                                        </div><!-- /.modal-footer -->
 
-                                                        </form>
+                                                    </form>
+
                                                     </div><!-- /.modal-content -->
+
                                                 </div><!-- /.modal-dialog -->
+
                                             </div><!-- /.modal -->
-  
+                                            
+                                            <!-- Boton para Editar Matriculación -->
                                             <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id . '/edit') }}" 
                                                 class="btn btn-sm btn-success" 
                                                 style="border-radius: 0px 0px 0px 0px">
                                                 <i class="fas fa-pencil-alt" title="Editar"></i>
                                             </a>
+
+                                            <!-- Boton para Eliminar Matriculación -->
                                             <form action="{{ url('/admin/matriculaciones',$matriculacion->id) }}" method="post"
                                                 onclick="preguntar{{$matriculacion->id}}(event)" id="miFormulario{{$matriculacion->id}}">
                                                 @csrf
@@ -194,11 +255,16 @@
                                                     }); 
                                                 }
                                             </script>
+
                                         </div><!-- /.btn-group -->
+
                                     </td>
                                 </tr>
+
                             @endforeach
+
                         </tbody>
+
                     </table>
 
                 </div><!-- /.card-body --> 

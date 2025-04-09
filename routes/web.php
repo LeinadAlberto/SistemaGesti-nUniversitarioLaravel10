@@ -275,3 +275,6 @@ Route::get('/admin/matriculaciones/buscar_estudiante/{id}', [App\Http\Controller
 // Rutas para Asignación de Materias
 Route::post('/admin/matriculaciones/asignar_materia/create', [App\Http\Controllers\AsignacionMateriaController::class, 'store'])
 ->name('admin.asignar_materia.store')->middleware('auth');
+
+Route::delete('/admin/matriculaciones/asignar_materia/{id}', [App\Http\Controllers\AsignacionMateriaController::class, 'destroy'])
+->name('admin.asignar_materia.destroy')->middleware('auth');

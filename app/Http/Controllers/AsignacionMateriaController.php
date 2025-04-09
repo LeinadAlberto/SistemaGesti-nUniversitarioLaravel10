@@ -30,6 +30,16 @@ class AsignacionMateriaController extends Controller
             "paralelo_id" => "required",
         ]);
 
+        $asignacionExistente = AsignacionMateria::where("matriculacion_id", $request->matriculacion_id)
+            ->where("materia_id", $request->materia_id)
+            ->first();
+
+        if ($asignacionExistente) {
+            return redirect()->route("admin.matriculacion.index")
+            ->with("mensaje", "Ya existe una asignacion de esta materia en la matriculación")
+            ->with("icono", "error");
+        }
+
         $asignacionMateria = new AsignacionMateria();
 
         $asignacionMateria->matriculacion_id = $request->matriculacion_id;
@@ -61,8 +71,14 @@ class AsignacionMateriaController extends Controller
         
     }
 
-    public function destroy(AsignacionMateria $asignacionMateria)
+    public function destroy($id)
     {
-        
+        $asignacionMateria = AsignacionMateria::findOrFail($id);
+
+        $asignacionMateria->delete();
+
+        return redirect()->route("admin.matriculacion.index")
+            ->with("mensaje", "Asignación eliminada correctamente")
+            ->with("icono", "success");
     }
 }
