@@ -256,6 +256,10 @@
                                                 }
                                             </script>
 
+                                            <!-- Boton para imprimir PDF de la Matricula -->
+                                            <a href="{{ url('/admin/matriculaciones/pdf/' . $matriculacion->id) }}" class="btn btn-warning btn-sm" title="Imprimir Matricula" target="_blank">
+                                                <i class="fas fa-print"></i>
+                                            </a>
                                         </div><!-- /.btn-group -->
 
                                     </td>

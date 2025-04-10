@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuracion;
 use App\Models\Matriculacion;
 use App\Models\Estudiante;
 use App\Models\Gestion;
@@ -12,6 +13,8 @@ use App\Models\Materia;
 use App\Models\Turno;
 use App\Models\Paralelo;
 use App\Models\AsignacionMateria;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
 
@@ -90,6 +93,24 @@ class MatriculacionController extends Controller
         return redirect()->route("admin.matriculacion.index")
             ->with("mensaje", "Matriculación creada correctamente")
             ->with("icono", "success");
+    }
+
+    public function pdf_matricula($id) 
+    {
+        $configuracion = Configuracion::first();
+
+        $matricula = Matriculacion::with("estudiante", "gestion", "nivel", "periodo", "carrera")->find($id);
+
+        $pdf = PDF::loadView("admin.matriculaciones.pdf_matricula", compact("configuracion", "matricula"));
+        
+        $pdf->setPaper("letter", "portrait"); // Tamaño de papel Carta(A4), orientación vertical.
+        $pdf->setOptions(["defaultFont" => "sans-serif"]); // Define fuente por defecto de tipo sans-serif
+        $pdf->setOptions(["isHtml5ParserEnabled" => true]);
+        $pdf->setOptions(["isRemoteEnabled" => true]);
+
+        return $pdf->stream("matriculas.pdf", [
+            "Attachment" => false 
+        ]);
     }
 
     public function show(Matriculacion $matriculacion)

@@ -261,6 +261,9 @@ Route::post('/admin/matriculaciones/create', [App\Http\Controllers\Matriculacion
 Route::get('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'show'])
 ->name('admin.matriculacion.show')->middleware('auth');
 
+Route::get('/admin/matriculaciones/pdf/{id}', [App\Http\Controllers\MatriculacionController::class, 'pdf_matricula'])
+->name('admin.matriculacion.pdf_matricula')->middleware('auth');
+
 Route::get('/admin/matriculaciones/{id}/edit', [App\Http\Controllers\MatriculacionController::class, 'edit'])
 ->name('admin.matriculacion.edit')->middleware('auth');
 
