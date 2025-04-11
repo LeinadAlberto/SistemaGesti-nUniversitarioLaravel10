@@ -16,6 +16,9 @@ use App\Models\AsignacionMateria;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 
+use Milon\Barcode\Facades\DNS1DFacade as DNS1D;
+use Milon\Barcode\Facades\DNS2DFacade as DNS2D;
+
 use Illuminate\Http\Request;
 
 class MatriculacionController extends Controller
@@ -101,7 +104,12 @@ class MatriculacionController extends Controller
 
         $matricula = Matriculacion::with("estudiante", "gestion", "nivel", "periodo", "carrera")->find($id);
 
-        $pdf = PDF::loadView("admin.matriculaciones.pdf_matricula", compact("configuracion", "matricula"));
+        $asignacionMaterias = AsignacionMateria::with("materia", "turno", "paralelo")
+            ->where("matriculacion_id", $matricula->id)->get();
+
+        $barcodePNG = "data:image/png;base64," . DNS1D::getBarcodePNG($matricula->estudiante->ci, "C128", 1, 33);
+
+        $pdf = PDF::loadView("admin.matriculaciones.pdf_matricula", compact("configuracion", "matricula", "barcodePNG", "asignacionMaterias"));
         
         $pdf->setPaper("letter", "portrait"); // Tamaño de papel Carta(A4), orientación vertical.
         $pdf->setOptions(["defaultFont" => "sans-serif"]); // Define fuente por defecto de tipo sans-serif
