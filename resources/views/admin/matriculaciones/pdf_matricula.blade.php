@@ -94,7 +94,7 @@
 
         </table>
 
-        <table border="0" style="width: 100%; margin-top: 30px; text-align: center;">
+        <table border="0" style="width: 100%; margin-top: 25px; text-align: center;">
             <tr>
                 <td><b>{{ $matricula->estudiante->apellidos }}</b> <br>_____________________ <br> Apellidos</td>
                 <td><b>{{ $matricula->estudiante->nombres }}</b> <br>_____________________ <br> Nombres</td>
@@ -105,9 +105,9 @@
 
         <br>
 
-        <p style="text-align: center"><b><u>MATERIAS ASIGNADAS</u></b></p>
+        <p style="text-align: center; margin-top: -3px;"><b><u>MATERIAS ASIGNADAS</u></b></p>
 
-        <table class="table table-bordered" cellpadding="4" style="width: 100%; font-size: 8pt; text-align: center;">
+        <table class="table table-bordered" cellpadding="6" style="width: 100%; font-size: 8pt;">
             <tr style="text-align: center; background-color: #F2F2F2">
                 <td><b>Nro</b></td>
                 <td><b>Materias</b></td>
@@ -115,7 +115,40 @@
                 <td><b>Turno</b></td>
                 <td><b>Paralelo</b></td>
             </tr>
+            @php
+                $contador = 1;    
+            @endphp
+            @foreach ($asignacionMaterias as $datos)
+                <tr>
+                    <td style="text-align: center;">{{ $contador++ }}</td>
+                    <td>{{ $datos->materia->nombre }}</td>
+                    <td style="text-align: center;">{{ $datos->materia->codigo }}</td>
+                    <td style="text-align: center;">{{ $datos->turno->nombre }}</td>
+                    <td style="text-align: center;">{{ $datos->paralelo->nombre }}</td>
+                </tr>
+            @endforeach
         </table>
+
+        <span style="font-size: 9pt">La Paz, 
+            @php 
+                echo now()->translatedFormat('j \d\e F \d\e\l Y'); 
+            @endphp
+        </span>
+
+        <br><br><br><br>
+
+        <table style="width: 100%; text-align: center;">
+            <tr>
+                <td>
+                    ________________________ <br> Director(a) Académico(a)
+                </td>
+                <td>
+                    ________________________ <br> Director(a) General
+                </td>
+            </tr>
+        </table>
+
+        <span style="font-size: 9pt; text-align: right; display: block; margin-top: 50px;">Impreso por: {{ Auth::user()->name }}</span>
 
     </body>
 

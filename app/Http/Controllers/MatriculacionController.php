@@ -126,9 +126,21 @@ class MatriculacionController extends Controller
         
     }
 
-    public function edit(Matriculacion $matriculacion)
+    public function edit($id)
     {
-        
+        $matriculacion = Matriculacion::with("estudiante", "gestion", "nivel", "periodo", "carrera")->find($id);
+        $estudiantes = Estudiante::all();
+        $gestiones = Gestion::all();
+        $niveles = Nivel::all();
+        $periodos = Periodo::all();
+        $carreras = Carrera::all();
+
+        return view("admin.matriculaciones.edit", compact("matriculacion", 
+                                                            "estudiantes", 
+                                                            "gestiones", 
+                                                            "niveles", 
+                                                            "periodos", 
+                                                            "carreras"));
     }
 
     public function update(Request $request, Matriculacion $matriculacion)
