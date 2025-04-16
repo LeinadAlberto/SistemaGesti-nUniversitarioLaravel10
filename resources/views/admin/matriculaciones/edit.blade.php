@@ -11,7 +11,7 @@
         <!-- Tarjeta lado Isquierdo - Datos del Estudiante -->
         <div class="col-md-6">
 
-            <div class="card card-info">
+            <div class="card card-success">
 
                 <div class="card-header">
                     <h3 class="card-title">Datos del Estudiante</h3>
@@ -26,18 +26,18 @@
                                 <select name="" id="buscar_estudiante" class="form-control select2">
                                     <option value="">Buscar...</option>
                                     @foreach ($estudiantes as $estudiante)
-                                        <option value="{{ $estudiante->id }}">
+                                        <option value="{{ $estudiante->id }}" {{ old("buscar_estudiante", $estudiante->id) == $matriculacion->estudiante_id ? "selected" : "" }}>
                                             {{ $estudiante->apellidos . ' ' . $estudiante->nombres . ' - ' . $estudiante->ci }}
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div><!-- /.form-group -->
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
                     
                     <hr class="mb-4">
 
-                    <div class="row" id="datos_estudiante" style="display: none;">
+                    <div class="row" id="datos_estudiante" style="display: block;">
 
                         <div class="col-md-12 d-flex align-items-stretch flex-column">
 
@@ -50,50 +50,50 @@
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b id="nombre_apellido"></b></h2>
+                                            <h2 class="lead"><b id="nombre_apellido">{{ $matriculacion->estudiante->apellidos }} {{ $matriculacion->estudiante->nombres }}</b></h2>
                                             <p class="text-muted text-sm">
                                                 <b>Profesión: </b> 
-                                                <span id="profesion"></span>
+                                                <span id="profesion">{{ $matriculacion->estudiante->profesion }}</span>
                                             </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <!-- Cédula de Identidad-->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-id-card"></i>
+                                                        <i class="fas fa-lg fa-id-card text-success"></i>
                                                     </span> 
-                                                    <b>CI: </b><span id="ci"></span>
+                                                    <b>CI: </b><span id="ci">{{ $matriculacion->estudiante->ci }}</span>
                                                 </li>
 
                                                 <!-- Fecha de Nacimiento -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-calendar-alt"></i>
+                                                        <i class="fas fa-lg fa-calendar-alt text-success"></i>
                                                     </span> 
-                                                    <b>Fecha de Nacimiento: </b><span id="fecha_nacimiento"></span>
+                                                    <b>Fecha de Nacimiento: </b><span id="fecha_nacimiento">{{ $matriculacion->estudiante->fecha_nacimiento }}</span>
                                                 </li>
 
                                                 <!-- Teléfono -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-phone"></i>
+                                                        <i class="fas fa-lg fa-phone text-success"></i>
                                                     </span> 
-                                                    <b>Teléfono: </b><span id="telefono"></span>
+                                                    <b>Teléfono: </b><span id="telefono">{{ $matriculacion->estudiante->telefono }}</span>
                                                 </li>
 
                                                 <!-- Correo Electrónico -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-envelope-open"></i>
+                                                        <i class="fas fa-lg fa-envelope-open text-success"></i>
                                                     </span> 
-                                                    <b>Correo Electrónico: </b><span id="email"></span>
+                                                    <b>Correo Electrónico: </b><span id="email">{{ $matriculacion->estudiante->usuario->email }}</span>
                                                 </li>
 
                                                 <!-- Dirección -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-building"></i>
+                                                        <i class="fas fa-lg fa-building text-success"></i>
                                                     </span> 
-                                                    <b>Dirección: </b><span id="direccion"></span>
+                                                    <b>Dirección: </b><span id="direccion">{{ $matriculacion->estudiante->direccion }}</span>
                                                 </li>
                                                 
                                                 <hr>
@@ -101,23 +101,23 @@
                                                 <!-- Número de Referencia -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-mobile-alt"></i>
+                                                        <i class="fas fa-lg fa-mobile-alt text-success"></i>
                                                     </span> 
-                                                    <b>Número de referencia: </b><span id="ref_celular"></span>
+                                                    <b>Número de referencia: </b><span id="ref_celular">{{ $matriculacion->estudiante->ref_celular }}</span>
                                                 </li>
                                                 
                                                 <!-- Parentesco -->
                                                 <li class="small">
                                                     <span class="fa-li">
-                                                        <i class="fas fa-lg fa-user-friends"></i>
+                                                        <i class="fas fa-lg fa-user-friends text-success"></i>
                                                     </span> 
-                                                    <b>Parentesco: </b><span id="parentesco"></span>
+                                                    <b>Parentesco: </b><span id="parentesco">{{ $matriculacion->estudiante->parentesco }}</span>
                                                 </li>
                                             </ul>
                                         </div>
 
                                         <div class="col-5 text-center">
-                                            <img src="" id="foto_estudiante" alt="Foto del estudiante" class="img-circle img-fluid" width="128px" height="128px">
+                                            <img src="{{ url($matriculacion->estudiante->foto) }}" id="foto_estudiante" alt="Foto del estudiante" class="img-circle img-fluid" width="128px" height="128px">
                                         </div>
                                     </div><!-- /.row -->
                                 </div><!-- /.card-body -->
@@ -139,7 +139,7 @@
             <!-- Tarjeta Superior Derecha -->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-info">
+                    <div class="card card-success">
 
                         <div class="card-header">
                             <h3 class="card-title">Llene los datos del formulario para la Matriculación</h3>
@@ -164,12 +164,14 @@
             
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-book"></i></span>
+                                                    <span class="input-group-text"><i class="fas fa-book text-success"></i></span>
                                                 </div><!-- /.input-group-prepend -->
                                                 <select name="gestion_id" class="form-control select2" required>
                                                     <option value="">Seleccionar Gestión Académica...</option>
                                                     @foreach ($gestiones as $gestion)
-                                                        <option value="{{ $gestion->id }}">{{ $gestion->nombre }}</option>
+                                                        <option value="{{ $gestion->id }}" {{ old("gestion_id", $gestion->id) == $matriculacion->gestion_id ? "selected" : "" }}>
+                                                            {{ $gestion->nombre }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div><!-- /.input-group -->
@@ -185,12 +187,14 @@
             
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                                    <span class="input-group-text"><i class="fas fa-layer-group text-success"></i></span>
                                                 </div><!-- /.input-group-prepend -->
                                                 <select name="nivel_id" class="form-control select2" required>
                                                     <option value="">Seleccionar Nivel Académico...</option>
                                                     @foreach ($niveles as $nivel)
-                                                        <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
+                                                        <option value="{{ $nivel->id }}" {{ old("nivel_id", $nivel->id) == $matriculacion->nivel_id ? "selected" : "" }}>
+                                                            {{ $nivel->nombre }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div><!-- /.input-group -->
@@ -210,12 +214,14 @@
             
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                                                    <span class="input-group-text"><i class="fas fa-graduation-cap text-success"></i></span>
                                                 </div><!-- /.input-group-prepend -->
                                                 <select name="carrera_id" class="form-control select2" required>
                                                     <option value="">Seleccionar Carrera...</option>
                                                     @foreach ($carreras as $carrera)
-                                                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+                                                        <option value="{{ $carrera->id }}" {{ old("carrera_id", $carrera->id) == $matriculacion->carrera_id ? "selected" : "" }}>
+                                                            {{ $carrera->nombre }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div><!-- /.input-group -->
@@ -231,12 +237,14 @@
             
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                    <span class="input-group-text"><i class="fas fa-calendar-alt text-success"></i></span>
                                                 </div><!-- /.input-group-prepend -->
                                                 <select name="periodo_id" class="form-control select2" required>
                                                     <option value="">Seleccionar Periodo Académico...</option>
                                                     @foreach ($periodos as $periodo)
-                                                        <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
+                                                        <option value="{{ $periodo->id }}" {{ old("periodo_id", $periodo->id) == $matriculacion->periodo_id ? "selected" : "" }}>
+                                                            {{ $periodo->nombre }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div><!-- /.input-group -->
@@ -252,7 +260,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-secondary">Cancelar</a>
-                                            <button type="submit" class="btn btn-info">Registrar</button>
+                                            <button type="submit" class="btn btn-success">Actualizar</button>
                                         </div><!-- /.form-group -->
                                     </div><!-- /.col-md-12 -->
                                 </div><!-- /.row -->
@@ -328,13 +336,17 @@
             });
 
             $('#buscar_estudiante').on('change', function() {
-                var id = $(this).val();
+
+                var id = $(this).val(); // Obtiene el id del Estudiante seleccionado
                 
                 if (id) {
                     $.ajax({
                         url: '{{ url('/admin/matriculaciones/buscar_estudiante/') }}' + '/' + id,
                         type: 'GET',
                         success: function(estudiante) {
+
+                            console.log(estudiante);
+
                             $('#nombre_apellido').html(estudiante.apellidos + ' ' + estudiante.nombres);
                             $('#profesion').html(estudiante.profesion);
                             $('#ci').html(estudiante.ci);
@@ -347,7 +359,7 @@
                             $('#foto_estudiante').attr("src", estudiante.foto_url).show();
                             $('#datos_estudiante').css('display', 'block');
                             $('#historial_academico').css('display', 'block');
-                            $('#estudiante_id').val(estudiante.id);
+                            $('#estudiante_id').val(estudiante.id); 
 
                             if (estudiante.matriculaciones && estudiante.matriculaciones.length > 0) {
                                 var tabla = '<table class="table table-bordered">';
@@ -367,7 +379,7 @@
                                     $('#tabla_historial').html(tabla).show();
                             } else {
                                 $('#tabla_historial').html('<p class="text-danger"><b>No existe historial académico registrado de este estudiante. </b></p>').show();
-                            }
+                            } 
                         }, 
                         error: function() {
                             alert('No se pudo obtener la información del Estudiante');
