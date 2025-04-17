@@ -145,13 +145,42 @@ class MatriculacionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $datos = request()->all();
+        /* $datos = request()->all();
 
-        return response()->json($datos); 
+        return response()->json($datos);  */
+
+        $request->validate([
+            "estudiante_id" => "required",
+            "gestion_id" => "required",
+            "nivel_id" => "required",
+            "periodo_id" => "required",
+            "carrera_id" => "required"
+        ]);
+
+        $matriculacion = Matriculacion::find($id);
+
+        $matriculacion->estudiante_id = $request->estudiante_id;
+        $matriculacion->gestion_id = $request->gestion_id;
+        $matriculacion->nivel_id = $request->nivel_id;
+        $matriculacion->periodo_id = $request->periodo_id;
+        $matriculacion->carrera_id = $request->carrera_id;
+        
+        $matriculacion->save();
+
+        return redirect()->route("admin.matriculacion.index")
+            ->with("mensaje", "Matriculación actualizada correctamente")
+            ->with("icono", "success");
+
     }
 
-    public function destroy(Matriculacion $matriculacion)
+    public function destroy($id)
     {
-        
+        $matricula = Matriculacion::find($id);
+
+        $matricula->delete();
+
+        return redirect()->route("admin.matriculacion.index")
+            ->with("mensaje", "Matriculación eliminada correctamente")
+            ->with("icono", "success");
     }
 }

@@ -62,8 +62,8 @@
                                         <div class="btn-group" role="group">
 
                                             <!-- Boton para Asignar Materias -->
-                                            <button type="button" class="btn btn-sm btn-info " data-toggle="modal" data-target="#exampleModal{{ $matriculacion->id }}">
-                                                Asignar Materias <i class="fas fa-list" style="margin-left: 5px;"></i>
+                                            <button type="button" class="btn btn-sm btn-info " title="Asignar Materias" style="border-radius: 4px 0px 0px 4px;" data-toggle="modal" data-target="#exampleModal{{ $matriculacion->id }}">
+                                                <i class="fas fa-list" style="margin-right: 7px;"></i> Asignar Materias 
                                             </button>
   
                                             <!-- Modal para Asignar Materias -->
@@ -222,8 +222,9 @@
                                             <!-- Boton para Editar Matriculación -->
                                             <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id . '/edit') }}" 
                                                 class="btn btn-sm btn-success" 
-                                                style="border-radius: 0px 0px 0px 0px">
-                                                <i class="fas fa-pencil-alt" title="Editar"></i>
+                                                style="border-radius: 0px 0px 0px 0px"
+                                                title="Editar Matricula">
+                                                <i class="fas fa-pencil-alt"></i>
                                             </a>
 
                                             <!-- Boton para Eliminar Matriculación -->
@@ -231,8 +232,8 @@
                                                 onclick="preguntar{{$matriculacion->id}}(event)" id="miFormulario{{$matriculacion->id}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 4px 4px 0px">
-                                                    <i class="fas fa-trash" title="Eliminar"></i>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar Matricula" style="border-radius: 0px 0px 0px 0px">
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
                                             <script>
@@ -257,7 +258,7 @@
                                             </script>
 
                                             <!-- Boton para imprimir PDF de la Matricula -->
-                                            <a href="{{ url('/admin/matriculaciones/pdf/' . $matriculacion->id) }}" class="btn btn-warning btn-sm" title="Imprimir Matricula" target="_blank">
+                                            <a href="{{ url('/admin/matriculaciones/pdf/' . $matriculacion->id) }}" class="btn btn-warning btn-sm" title="Imprimir Matricula" target="_blank" style="border-radius: 0px 4px 4px 0px">
                                                 <i class="fas fa-print"></i>
                                             </a>
                                         </div><!-- /.btn-group -->

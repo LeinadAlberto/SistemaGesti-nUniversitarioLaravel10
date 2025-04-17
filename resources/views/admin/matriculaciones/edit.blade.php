@@ -310,9 +310,9 @@
         
                         <div class="card-body">
                             
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-hover table-striped">
 
-                                <thead>
+                                <thead class="text-center bg-dark">
 
                                     <tr>
                                         
@@ -325,7 +325,7 @@
                                 
                                 </thead>
 
-                                <tbody>
+                                <tbody class="text-center">
                                     
                                     @foreach ( $matriculacion->estudiante->matriculaciones as $matricula)
 
