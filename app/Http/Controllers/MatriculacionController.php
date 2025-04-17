@@ -143,9 +143,11 @@ class MatriculacionController extends Controller
                                                             "carreras"));
     }
 
-    public function update(Request $request, Matriculacion $matriculacion)
+    public function update(Request $request, $id)
     {
-        
+        $datos = request()->all();
+
+        return response()->json($datos); 
     }
 
     public function destroy(Matriculacion $matriculacion)

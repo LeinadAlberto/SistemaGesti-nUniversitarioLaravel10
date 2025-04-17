@@ -147,14 +147,16 @@
         
                         <div class="card-body">
                             
-                            <form action="{{ url('admin/matriculaciones/create') }}" method="post">
+                            <form action="{{ url('admin/matriculaciones/' . $matriculacion->id) }}" method="post">
         
                                 @csrf
+
+                                @method('PUT')
         
                                 <div class="row">
         
                                     <!-- ID del Estudiante -->
-                                    <input type="text" id="estudiante_id" name="estudiante_id" hidden>
+                                    <input type="text" id="estudiante_id" name="estudiante_id" value="{{ $matriculacion->estudiante_id }}" hidden>
             
                                     <!-- Nombre Gestión Académica-->
                                     <div class="col-md-6">
@@ -277,7 +279,7 @@
             <!-- Tarjeta Inferior Derecha -->
             <div class="row" id="historial_academico" style="display: none;">
                 <div class="col-md-12">
-                    <div class="card card-info">
+                    <div class="card card-success">
 
                         <div class="card-header">
                             <h3 class="card-title">Historial Académico</h3>
@@ -291,6 +293,55 @@
 
                             </div><!-- #tabla_historial -->
 
+                        </div><!-- /.card-body --> 
+        
+                    </div><!-- /.card -->
+                </div>
+            </div><!-- /.row -->
+
+            <!-- Tarjeta Inferior Derecha de Editar -->
+            <div class="row" id="historial_academico_pre" style="display: block;">
+                <div class="col-md-12">
+                    <div class="card card-success">
+
+                        <div class="card-header">
+                            <h3 class="card-title">Historial Académico</h3>
+                        </div><!-- /.card-header -->
+        
+                        <div class="card-body">
+                            
+                            <table class="table table-bordered">
+
+                                <thead>
+
+                                    <tr>
+                                        
+                                        <th>Gestión</th>
+                                        <th>Nivel</th>
+                                        <th>Carrera</th>
+                                        <th>Periodo</th>
+                                    
+                                    </tr>
+                                
+                                </thead>
+
+                                <tbody>
+                                    
+                                    @foreach ( $matriculacion->estudiante->matriculaciones as $matricula)
+
+                                        <tr>
+                                            <td>{{ $matricula->gestion->nombre }}</td>
+                                            <td>{{ $matricula->nivel->nombre }}</td>
+                                            <td>{{ $matricula->carrera->nombre }}</td>
+                                            <td>{{ $matricula->periodo->nombre }}</td>
+                                        </tr>
+                                    @endforeach
+                                
+                                </tbody>
+
+                            </table>
+
+                            
                         </div><!-- /.card-body --> 
         
                     </div><!-- /.card -->
@@ -377,7 +428,9 @@
                                     tabla += '</tbody>';
 
                                     $('#tabla_historial').html(tabla).show();
+                                    $('#historial_academico_pre').css('display', 'none');
                             } else {
+                                $('#historial_academico_pre').css('display', 'none');
                                 $('#tabla_historial').html('<p class="text-danger"><b>No existe historial académico registrado de este estudiante. </b></p>').show();
                             } 
                         }, 
