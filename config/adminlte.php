@@ -385,6 +385,8 @@ return [
             'classes' => 'bg-info text-white',
         ],
 
+        ['header' => 'DATOS ACADÉMICOS'],
+
         [
             'text' => 'Roles',
             'icon' => 'fas fa-fw fa-user-check',
@@ -412,6 +414,14 @@ return [
             'url' => 'admin/docentes',
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'classes' => 'bg-info text-white',
+            'submenu' => [
+                [
+                    'text' => 'Grupos Académicos',
+                    'url' => 'admin/grupos_academicos',
+                    'classes' => 'bg-info text-white',
+
+                ],
+            ],
         ],
 
         [
